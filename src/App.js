@@ -1,14 +1,19 @@
-import React from 'react';
+import React from "react";
+import {
+  BrowserRouter as Router,
+} from "react-router-dom";
+import AppRouter from './router/index';
 import Header from './components/header/Header';
-import Dashboard from './components/dashboard/Dashboard';
 
 const App = () => {
   return (
-    <div className="App">
-      <Header />
-      <Dashboard />
-    </div>
+    <>
+      <Router>
+        <Header />
+        <AppRouter />
+      </Router>
+    </>
   );
-};
+}
 
 export default App;

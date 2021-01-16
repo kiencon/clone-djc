@@ -1,0 +1,10 @@
+@import '../../styles/variables';
+
+.header {
+  background-color: $bg-color;
+
+  .wraper-header {
+    display: flex;
+    padding: 20px;
+  }
+}

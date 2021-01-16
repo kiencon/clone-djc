@@ -1,0 +1,19 @@
+.dashboard {
+  .ant-form {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+    .ant-form-item {
+      margin: 0 10px;
+    }
+  }
+
+  .btn-dashboard {
+    background-color: $bg-color;
+    color: #fff;
+    width: 260px;
+    height: 35px;
+    border-radius: 5px;
+  }
+}

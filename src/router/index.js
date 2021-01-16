@@ -4,25 +4,22 @@ import {
   Route,
 } from "react-router-dom";
 
-import Login from '../components/login/Login';
+import LoginPage from '../containers/login/index';
 import PrivateRoute from './PrivateRoute';
-import Dashboard from '../components/dashboard/Dashboard';
+import DashboardPage from '../containers/dashboard/index';
 
 const AppRouter = () => {
   return (
     <Router>
       <Switch>
         <Route exact path="/">
-          <Login />
-        </Route>
-        <Route path="/public">
-          <Login />
+          <LoginPage />
         </Route>
         <Route path="/login">
-          <Login />
+          <LoginPage />
         </Route>
         <PrivateRoute path="/dashboard">
-          <Dashboard />
+          <DashboardPage />
         </PrivateRoute>
       </Switch>
     </Router>

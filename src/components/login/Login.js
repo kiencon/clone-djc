@@ -1,28 +1,9 @@
-import { useState } from 'react';
 import { Form, Input, Button } from 'antd';
 
-import Dashboard from '../dashboard/Dashboard';
-
-const Login = () => {
-  // todo using reduxt store state logged user
-  const [user, setUser] = useState('');
-
-  if (user) {
-    return (
-      <Dashboard />
-    )
-  }
-
-  const onFinish = ({ username }) => {
-    localStorage.setItem('user', username);
-    setUser(username);
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    // todo toast notify
-    alert('Failed:', JSON.stringify(errorInfo, null, 2));
-  };
-
+const Login = ({
+  onFinish,
+  onFinishFailed
+}) => {
   return (
     <>
       <div className="login container">

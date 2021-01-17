@@ -5,11 +5,16 @@
 
   .wraper-header {
     display: flex;
-    padding: 20px;
+    padding: 33px;
+    max-width: $max-width;
 
     .logo {
       &:hover {
         cursor: pointer;
+      }
+      
+      img {
+        width: 150px;
       }
     }
   }

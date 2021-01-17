@@ -9,10 +9,14 @@ const App = () => {
     <Router>
       <div>
         <Header />
-        <AppRouter />
+        <div className="main container">
+          <section className="wraper-app">
+            <AppRouter />
+          </section>
+        </div>
       </div>
     </Router>
   );
-}
+};
 
 export default App;

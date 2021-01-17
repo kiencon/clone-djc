@@ -1,5 +1,6 @@
 import { Switch }             from "react-router-dom";
 import PreviousJobs           from '../containers/previousJobs/index';
+import DashboardPage           from '../containers/dashboard/index';
 import JobCardPage            from '../containers/jobcard/index';
 import RouteWithSubRoutes     from './RouteWithSubRoutes';
 import VehicleInformation     from '../components/jobcard/VehicleInformation';
@@ -11,6 +12,10 @@ import VehicleInspection      from '../components/jobcard/VehicleInspection';
 import JobWorkSheet           from '../components/jobcard/JobWorkSheet';
 
 const routes = [
+  {
+    path: "/dashboard",
+    component: DashboardPage
+  },
   {
     path: "/previous-jobs",
     component: PreviousJobs

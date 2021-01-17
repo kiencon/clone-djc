@@ -1,19 +1,45 @@
+@import '../../styles/variables';
+
 .dashboard {
-  .ant-form {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-
-    .ant-form-item {
-      margin: 0 10px;
+  .dashboard-nav {
+    ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
     }
-  }
+    
+    li {
+      a {
+        position: relative;
+        background-color: #5c2e91;
+        color: #fff;
+        width: 260px;
+        border-radius: 4px;
+        display: block;
+        height: 35px;
+        text-align: left;
+        line-height: 35px;
+        font-size: 15px;
+        margin: 0 10px;
+        padding: 0px 10px 0 60px;
+  
+        &:before {
+          content: "";
+          width: 45px;
+          height: 32px;
+          position: absolute;
+          left: 0;
+          top: 2px;
+          border-right: 1px solid #8d6db2;
+        }
 
-  .btn-dashboard {
-    background-color: $bg-color;
-    color: #fff;
-    width: 260px;
-    height: 35px;
-    border-radius: 5px;
+        &.icon-car::before {
+          background: url('../../assets/images/car-icon-white.png') no-repeat 50%;
+        }
+        &.icon-search::before {
+          background: url('../../assets/images/search-icon-white.png') no-repeat 50%;
+        }
+      }
+    }
   }
 }

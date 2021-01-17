@@ -2,7 +2,6 @@ import {
   BrowserRouter as Router,
 }                             from "react-router-dom";
 import Header                 from './components/header/Header';
-import DashboardPage          from './containers/dashboard/index';
 import AppRouter              from './router/index';
 
 const App = () => {
@@ -10,7 +9,6 @@ const App = () => {
     <Router>
       <div>
         <Header />
-        <DashboardPage />
         <AppRouter />
       </div>
     </Router>

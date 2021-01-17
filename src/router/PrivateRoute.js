@@ -5,7 +5,7 @@ const PrivateRoute = ({ children, auth, ...rest }) => {
     <Route
       {...rest}
       render={({ location }) =>
-        auth.user ? (
+        localStorage.getItem('user') ? (
           children
         ) : (
           <Redirect

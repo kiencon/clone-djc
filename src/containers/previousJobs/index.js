@@ -1,7 +1,7 @@
-const PreviousJobs = () => (
+const PreviousJobsPage = () => (
   <div>
     <h1>PreviousJobs</h1>
   </div>
 );
 
-export default PreviousJobs;
+export default PreviousJobsPage;

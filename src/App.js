@@ -1,18 +1,19 @@
-import React from "react";
 import {
   BrowserRouter as Router,
-} from "react-router-dom";
-import AppRouter from './router/index';
-import Header from './components/header/Header';
+}                             from "react-router-dom";
+import Header                 from './components/header/Header';
+import DashboardPage          from './containers/dashboard/index';
+import AppRouter              from './router/index';
 
 const App = () => {
   return (
-    <>
-      <Router>
+    <Router>
+      <div>
         <Header />
+        <DashboardPage />
         <AppRouter />
-      </Router>
-    </>
+      </div>
+    </Router>
   );
 }
 

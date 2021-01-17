@@ -1,10 +1,17 @@
 import Dashboard from '../../components/dashboard/Dashboard';
-import history from 'history';
+import { useHistory} from 'react-router-dom';
 
 const DashboardPage = () => {
-  const viewPreviousJobs = () => history.push('/previous-jobs');
+  const history = useHistory();
+  const viewPreviousJobs = (event) => {
+    event.preventDefault();
+    history.push('/previous-jobs');
+  };
 
-  const addNewJob= () => history.push('/add-new-job');
+  const addNewJob= (event) => {
+    event.preventDefault();
+    history.push('/add-new-job')
+  };
 
   return (
     <Dashboard

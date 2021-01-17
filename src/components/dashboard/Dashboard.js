@@ -1,30 +1,25 @@
 import { Form, Button } from 'antd';
+import {
+  Link,
+} from "react-router-dom";
 
-const Dashboard = (props) => {
-  console.log(props);
+const Dashboard = ({
+  addNewJob,
+  viewPreviousJobs
+}) => {
   return (
     <div className="dashboard container">
       <h1 className="main-title">
         Dashboard
       </h1>
-      <Form
-        name="basic"
-      >
-        <Form.Item
-          name="add a new job"
-        >
-          <Button onClick={props.addNewJob} className="btn-dashboard" htmlType="submit">
-            Add a new Job
-          </Button>
-        </Form.Item>
-        <Form.Item
-          name="view previous jobs"
-        >
-          <Button onClick={props.viewPreviousJobs} className="btn-dashboard" htmlType="submit">
-            View previous jobs
-          </Button>
-        </Form.Item>
-      </Form>
+      <div className="dashboard-nav">
+        <Link to="/add-new-job">
+          Add a new Job
+        </Link>
+        <Link to="/previous-jobs">
+          View previous jobs
+        </Link>
+      </div>
     </div>
   );
 };

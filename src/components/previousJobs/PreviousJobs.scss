@@ -1,0 +1,79 @@
+@import '../../styles/variables';
+
+.previousJobs {
+    text-align: center;
+
+    h1 {
+        font-family: BebasNeue-Bold;
+        color: #373737;
+        font-size: 50px;
+    }
+
+    td.ant-table-cell, th.ant-table-cell {
+        color: $bg-color!important;
+    }
+      
+    .ant-pagination-item {
+        display: none;
+    }
+    
+    .ant-pagination {
+        display: list-item;
+        text-align: center!important;
+        padding: 0!important;
+    }
+
+    .ant-table-thead {
+        tr {
+            border-bottom: 1px solid #d9d9d9;
+
+            th {
+                background-color: #fff;
+                border-bottom: none;
+                font-weight: 600;
+                font-size: 16px;
+            }
+        }
+    }
+
+    .ant-table-tbody {
+        tr {
+            td {
+                border-bottom: none;
+            }
+        }
+
+        .ant-table-row {
+            .icon-edit {
+                background: url('../../assets/images/edit-icon.png') no-repeat 50%;
+            }
+        }
+    }
+
+    .ant-table table {
+        border-collapse: collapse;
+    }
+
+    .ant-pagination {
+        display: none;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: space-around;
+
+        .btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: black;
+            margin-top: 20px;
+            text-transform: uppercase;
+
+            &:active {
+                border: none;
+                background: none;
+            }
+        }
+    }
+}

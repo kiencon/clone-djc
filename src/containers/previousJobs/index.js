@@ -1,6 +1,8 @@
+import PreviousJobs from '../../components/previousJobs/PreviousJobs';
+
 const PreviousJobsPage = () => (
   <div>
-    <h1>PreviousJobs</h1>
+    <PreviousJobs />
   </div>
 );
 

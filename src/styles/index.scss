@@ -5,13 +5,20 @@
 // component styles
 @import '../components/login/Login.scss';
 @import '../components/dashboard/Dashboard.scss';
-
+@import '../components/previousJobs/PreviousJobs.scss';
+@import '../components/jobcard/jobcard.scss';
 
 // container styles
 @import '../containers/jobcard/index.scss';
 
+
 html {
   --antd-wave-shadow-color: $bg-color;
+}
+
+h1 {
+  font-family: BebasNeue-Bold;
+  text-align: center;
 }
 
 .container {
@@ -23,11 +30,33 @@ html {
 
 .main {
   max-width: $max-width;
-  font-family: BebasNeue-Bold;
+  font-family: Roboto, roboto-regular, sans-serif;
 }
 
 .main-title {
   font-size: 50px;
   color: #373737;
   text-align: center;
+}
+
+.ant-col {
+  max-width: 300px;
+
+  .ant-form-item-control-input-content {
+    input {
+      border-radius: 3px;
+    }
+  }
+}
+
+.form {
+  .ant-row {
+    justify-content: center;
+  }
+
+  .ant-btn.btn {
+    width: 100%;
+    background: #5c2e91;
+    color: #fff;
+  }
 }

@@ -1,0 +1,28 @@
+.vehicle-information {
+    h1 {
+        font-weight: bold;
+        font-size: 46px;
+    }
+
+    p {
+        font-size: 20px;
+        color: $bg-color;
+    }
+
+    .form-login {
+        display: flex;
+
+        .ant-form {
+            margin: 0 auto;
+        }
+
+        .ant-input:hover,
+        .ant-input-affix-wrapper:hover {
+            border-color: $bg-color;
+        }
+
+        .btn-login {
+            width: 100%;
+        }
+    }
+}

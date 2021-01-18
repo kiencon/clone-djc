@@ -1,7 +1,18 @@
-.vehicle-information {
-    h1 {
+.vehicle-information,
+.driverAndOwnerInfo {
+    h1, h3 {
         font-weight: bold;
+        text-align: center;
+        font-family: BebasNeue-Bold;
+    }
+
+    h1 {
         font-size: 46px;
+    }
+
+    h3 {
+        text-align: left;
+        font-size: 25px;
     }
 
     p {
@@ -9,20 +20,15 @@
         color: $bg-color;
     }
 
-    .form-login {
-        display: flex;
+    .information {
+        .wrapper-information {
+            display: flex;
+            justify-content: space-around;
 
-        .ant-form {
-            margin: 0 auto;
-        }
-
-        .ant-input:hover,
-        .ant-input-affix-wrapper:hover {
-            border-color: $bg-color;
-        }
-
-        .btn-login {
-            width: 100%;
+            .customerInformation,
+            .driverInformation {
+                min-width: 300px;
+            }
         }
     }
 }

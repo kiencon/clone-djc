@@ -2,7 +2,6 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Select } from 'antd';
 const { Option } = Select;
 
-
 const VehicleInformation = () => {
   const onFinish = (values) => {
     console.log(values);

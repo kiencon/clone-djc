@@ -1,15 +1,15 @@
 import { Switch }             from "react-router-dom";
 import PreviousJobs           from '../containers/previousJobs/index';
-import DashboardPage           from '../containers/dashboard/index';
+import DashboardPage          from '../containers/dashboard/index';
 import JobCardPage            from '../containers/jobcard/index';
 import RouteWithSubRoutes     from './RouteWithSubRoutes';
-import VehicleInformation     from '../components/jobcard/VehicleInformation';
-import DriverAndOwnerInfo     from '../components/jobcard/DriverAndOwnerInfo';
-import TypeInspection         from '../components/jobcard/TypeInspection';
-import Review                 from '../components/jobcard/Review';
-import ServiceRecommendation  from '../components/jobcard/ServiceRecommendation';
-import VehicleInspection      from '../components/jobcard/VehicleInspection';
-import JobWorkSheet           from '../components/jobcard/JobWorkSheet';
+import VehicleInformation     from '../containers/jobcard/components/VehicleInformation';
+import DriverAndOwnerInfo     from '../containers/jobcard/components/DriverAndOwnerInfo';
+import TypeInspection         from '../containers/jobcard/components/TypeInspection';
+import Review                 from '../containers/jobcard/components/Review';
+import ServiceRecommendation  from '../containers/jobcard/components/ServiceRecommendation';
+import VehicleInspection      from '../containers/jobcard/components/VehicleInspection';
+import JobWorkSheet           from '../containers/jobcard/components/JobWorkSheet';
 
 const routes = [
   {

@@ -6,7 +6,7 @@ const DriverAndOwnerInfo = () => {
   const onFinish = values => {
     console.log(values);
   };
-  const onFinishFailed = () => alert('onFinishFailed');
+  const onFinishFailed = () => console.log('onFinishFailed');
   return (
     <>
       <div className="driverAndOwnerInfo">

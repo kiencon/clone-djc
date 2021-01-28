@@ -26,10 +26,17 @@ const VehicleInformation = () => {
   });
 
   return (
-    <VehicleInformationFormTemplate
-      form={form}
-      onSubmit={formRef.current.onSubmit}
-    />
+    <>
+      <div className="vehicle-information">
+        <h1>Vehicle information</h1>
+        <div className="form">
+          <VehicleInformationFormTemplate
+            form={form}
+            onSubmit={formRef.current.onSubmit}
+          />
+        </div>
+      </div>
+    </>
   );
 };
 

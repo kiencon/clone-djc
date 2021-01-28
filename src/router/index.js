@@ -6,7 +6,7 @@ import JobWorkSheet from '../containers/jobcard/components/JobWorkSheet';
 import Review from '../containers/jobcard/components/Review';
 import ServiceRecommendation from '../containers/jobcard/components/ServiceRecommendation';
 import TypeInspection from '../containers/jobcard/components/TypeInspection';
-import VehicleInformation from '../containers/jobcard/components/VehicleInformation';
+import VehicleInformation from '../containers/jobcard/vehicleInformation';
 import VehicleInspection from '../containers/jobcard/components/VehicleInspection';
 import JobCardPage from '../containers/jobcard/index';
 import PreviousJobs from '../containers/previousJobs/index';

@@ -1,0 +1,59 @@
+{
+  "extends": [
+    "airbnb",
+    "airbnb/hooks"
+  ],
+  "env": {
+    "node": true,
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "ignorePatterns": [
+    "src/pages/legacy/**/*",
+    "src/utils/jiraAuth.js",
+    "src/pages/productionData/deviceTypes/createModal/**/*",
+    "src/components/ViewDeviceLogsDialog/__test__/ViewDeviceLogsDialog.test.js",
+    "src/components/Table/**/*",
+    "src/components/Select/index.js"
+  ],
+  "rules": {
+    "react/prop-types": 0,
+    "no-console": [
+      0
+    ],
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
+    "max-len": [
+      "error",
+      120,
+      4,
+      {
+        "ignoreComments": true,
+        "ignoreUrls": true
+      }
+    ],
+    "no-underscore-dangle": [
+      2,
+      {
+        "allowAfterThis": true
+      }
+    ],
+    "import/prefer-default-export": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ]
+  },
+  "parserOptions": {
+    "ecmaVersion": 9
+  }
+}

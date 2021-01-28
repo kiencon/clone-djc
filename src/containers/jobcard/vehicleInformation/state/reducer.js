@@ -36,18 +36,13 @@ const init = () => {
 
 const vehicleInformationReducer = (state = init(), action) => {
   switch (action.type) {
-    // case CREATE_VEHICLE_INFORMATION_SUCCESS: {
-    //   const payload = action.payload || {};
-
-    //   return state
-    //     .update('vehicleInformation', stateList => ({stateList, payload}))
-    //     .set('isLoading', false);
-    // }
-    case CREATE_VEHICLE_INFORMATION_REQUEST:
-    {
-      console.log('reducer CREATE_VEHICLE_INFORMATION_REQUEST');
-      return state;
+    case CREATE_VEHICLE_INFORMATION_REQUEST: {
+      const { values } = action.payload;
+      return state.set('vehicleInformation', {
+        ...values,
+      });
     }
+
     case CREATE_VEHICLE_INFORMATION_ERROR:
       return state.set('isLoading', false);
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, Switch } from 'react-router-dom';
 import RouteWithSubRoutes from '../../router/RouteWithSubRoutes';
-import VehicleInformation from './vehicleInformation/index';
 
 const JobCardPage = ({ routes }) => {
   const jobcardRoutes = [{
@@ -28,8 +27,6 @@ const JobCardPage = ({ routes }) => {
   }];
   return (
     <div className="jobcard">
-      <h1>sdsadsad</h1>
-      <VehicleInformation />
       <div className="jobcard-nav">
         <ul>
           {

@@ -1,10 +1,10 @@
-import {
-  useCallback, useEffect, useMemo, useRef, useState,
-} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Form } from 'antd';
-import VehicleInformationFormTemplate from './formTemplate/index';
+import React, {
+  useCallback, useRef,
+} from 'react';
+import { useDispatch } from 'react-redux';
 import { FORM_TYPE } from '../../../config/const';
+import VehicleInformationFormTemplate from './formTemplate/index';
 import {
   createVehicleInformation,
 } from './state/action';

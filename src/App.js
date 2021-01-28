@@ -1,22 +1,21 @@
+import React from 'react';
 import {
   BrowserRouter as Router,
-}                             from "react-router-dom";
-import Header                 from './components/header/Header';
-import AppRouter              from './router/index';
+} from 'react-router-dom';
+import Header from './components/header/Header';
+import AppRouter from './router/index';
 
-const App = () => {
-  return (
-    <Router>
-      <div>
-        <Header />
-        <div className="main container">
-          <section className="wraper-app">
-            <AppRouter />
-          </section>
-        </div>
+const App = () => (
+  <Router>
+    <div>
+      <Header />
+      <div className="main container">
+        <section className="wraper-app">
+          <AppRouter />
+        </section>
       </div>
-    </Router>
-  );
-};
+    </div>
+  </Router>
+);
 
 export default App;

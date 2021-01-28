@@ -1,13 +1,17 @@
 import { SearchOutlined } from '@ant-design/icons';
-import { Button, Form, Input, Select } from 'antd';
+import {
+  Button, Form, Input, Select,
+} from 'antd';
+import React from 'react';
+
 const { Option } = Select;
 
 const VehicleInformation = () => {
-  const onFinish = (values) => {
+  const onFinish = values => {
     console.log(values);
   };
   const onFinishFailed = () => alert('onFinishFailed');
-  const onGenderChange = (value) => console.log(value);
+  const onGenderChange = value => console.log(value);
 
   return (
     <>
@@ -22,10 +26,10 @@ const VehicleInformation = () => {
             <Form.Item
               name="vehicleRegistrationNumber"
               rules={[
-                { 
+                {
                   required: true,
-                  message: 'Vehicle Registration Number is required'
-                }
+                  message: 'Vehicle Registration Number is required',
+                },
               ]}
             >
               <Input
@@ -41,7 +45,7 @@ const VehicleInformation = () => {
               rules={[
                 {
                   required: true,
-                  message: 'Vehicle Type Number is required'
+                  message: 'Vehicle Type Number is required',
                 },
               ]}
             >
@@ -61,7 +65,7 @@ const VehicleInformation = () => {
               rules={[
                 {
                   required: true,
-                  message: 'Vehicle Brand is required'
+                  message: 'Vehicle Brand is required',
                 },
               ]}
             >
@@ -81,7 +85,7 @@ const VehicleInformation = () => {
               rules={[
                 {
                   required: true,
-                  message: 'Vehicle Model is required'
+                  message: 'Vehicle Model is required',
                 },
               ]}
             >
@@ -101,7 +105,7 @@ const VehicleInformation = () => {
               rules={[
                 {
                   required: true,
-                  message: 'Vehicle Configuration is required'
+                  message: 'Vehicle Configuration is required',
                 },
               ]}
             >
@@ -121,7 +125,7 @@ const VehicleInformation = () => {
               rules={[
                 {
                   required: true,
-                  message: 'Road Application is required'
+                  message: 'Road Application is required',
                 },
               ]}
             >
@@ -141,7 +145,7 @@ const VehicleInformation = () => {
               rules={[
                 {
                   required: true,
-                  message: 'Loading is required'
+                  message: 'Loading is required',
                 },
               ]}
             >
@@ -161,7 +165,7 @@ const VehicleInformation = () => {
               rules={[
                 {
                   required: true,
-                  message: 'Tyre Size is required'
+                  message: 'Tyre Size is required',
                 },
               ]}
             >
@@ -179,10 +183,10 @@ const VehicleInformation = () => {
             <Form.Item
               name="speedoMeterReading"
               rules={[
-                { 
+                {
                   required: true,
-                  message: 'Speedo Meter Reading (in km) is required'
-                }
+                  message: 'Speedo Meter Reading (in km) is required',
+                },
               ]}
             >
               <Input
@@ -193,10 +197,10 @@ const VehicleInformation = () => {
             <Form.Item
               name="averageMonthlyRunning"
               rules={[
-                { 
+                {
                   required: true,
-                  message: 'Average Monthly Running (in km) is required'
-                }
+                  message: 'Average Monthly Running (in km) is required',
+                },
               ]}
             >
               <Input

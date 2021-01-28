@@ -1,22 +1,21 @@
-import { put } from 'redux-saga/effects';
+import { put, takeLeading } from 'redux-saga/effects';
 import {
-  CREATE_VEHICLE_INFORMATION_ERROR,
-  CREATE_VEHICLE_INFORMATION_SUCCESS,
+  createVehicleInformationError,
+  createVehicleInformationSuccess,
+  CREATE_VEHICLE_INFORMATION_REQUEST,
 } from './action';
 
-export function* createVehicleInformationSage({payload}) {
+export function* createVehicleInformationSaga({ payload }) {
   try {
-    yield put(
-      {
-        type: CREATE_VEHICLE_INFORMATION_SUCCESS,
-        payload
-      },
-    );
+    // eslint-disable-next-line no-console
+    console.log('saga CREATE_VEHICLE_INFORMATION_REQUEST', payload);
+    const response = { code: 200 };
+    yield put(createVehicleInformationSuccess(response));
   } catch (error) {
-    yield put({ type: CREATE_VEHICLE_INFORMATION_ERROR, error: error.toString() });
+    yield put(createVehicleInformationError(error.toString()));
   }
-};
+}
 
-// export default function* regulationsSaga() {
-//   yield takeLeading(UPDATE_REGULATION_REQUEST, updateRegulationSaga);
-// }
+export default function* vehicleInformationSaga() {
+  yield takeLeading(CREATE_VEHICLE_INFORMATION_REQUEST, createVehicleInformationSaga);
+}

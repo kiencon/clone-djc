@@ -1,11 +1,11 @@
-const Review = () => {
-  return (
-    <>
-      <div className="review">
-        <h1>Review</h1>
-      </div>
-    </>
-  );
-};
+import React from 'react';
+
+const Review = () => (
+  <>
+    <div className="review">
+      <h1>Review</h1>
+    </div>
+  </>
+);
 
 export default Review;

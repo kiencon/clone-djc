@@ -1,69 +1,68 @@
-import { Switch }             from "react-router-dom";
-import PreviousJobs           from '../containers/previousJobs/index';
-import DashboardPage          from '../containers/dashboard/index';
-import JobCardPage            from '../containers/jobcard/index';
-import RouteWithSubRoutes     from './RouteWithSubRoutes';
-import VehicleInformation     from '../containers/jobcard/components/VehicleInformation';
-import DriverAndOwnerInfo     from '../containers/jobcard/components/DriverAndOwnerInfo';
-import TypeInspection         from '../containers/jobcard/components/TypeInspection';
-import Review                 from '../containers/jobcard/components/Review';
-import ServiceRecommendation  from '../containers/jobcard/components/ServiceRecommendation';
-import VehicleInspection      from '../containers/jobcard/components/VehicleInspection';
-import JobWorkSheet           from '../containers/jobcard/components/JobWorkSheet';
+import React from 'react';
+import { Switch } from 'react-router-dom';
+import DashboardPage from '../containers/dashboard/index';
+import DriverAndOwnerInfo from '../containers/jobcard/components/DriverAndOwnerInfo';
+import JobWorkSheet from '../containers/jobcard/components/JobWorkSheet';
+import Review from '../containers/jobcard/components/Review';
+import ServiceRecommendation from '../containers/jobcard/components/ServiceRecommendation';
+import TypeInspection from '../containers/jobcard/components/TypeInspection';
+import VehicleInformation from '../containers/jobcard/components/VehicleInformation';
+import VehicleInspection from '../containers/jobcard/components/VehicleInspection';
+import JobCardPage from '../containers/jobcard/index';
+import PreviousJobs from '../containers/previousJobs/index';
+import RouteWithSubRoutes from './RouteWithSubRoutes';
 
 const routes = [
   {
-    path: "/dashboard",
-    component: DashboardPage
+    path: '/dashboard',
+    component: DashboardPage,
   },
   {
-    path: "/previous-jobs",
-    component: PreviousJobs
+    path: '/previous-jobs',
+    component: PreviousJobs,
   },
   {
-    path: "/add-new-job",
+    path: '/add-new-job',
     component: JobCardPage,
     routes: [
       {
-        path: "/add-new-job/vehicle-information",
-        component: VehicleInformation
+        path: '/add-new-job/vehicle-information',
+        component: VehicleInformation,
       },
       {
-        path: "/add-new-job/driver-and-owner-info",
-        component: DriverAndOwnerInfo
+        path: '/add-new-job/driver-and-owner-info',
+        component: DriverAndOwnerInfo,
       },
       {
-        path: "/add-new-job/vehicle-inspection",
-        component: VehicleInspection
+        path: '/add-new-job/vehicle-inspection',
+        component: VehicleInspection,
       },
       {
-        path: "/add-new-job/type-inspection",
-        component: TypeInspection
+        path: '/add-new-job/type-inspection',
+        component: TypeInspection,
       },
       {
-        path: "/add-new-job/job-workSheet",
-        component: JobWorkSheet
+        path: '/add-new-job/job-workSheet',
+        component: JobWorkSheet,
       },
       {
-        path: "/add-new-job/service-recommendation",
-        component: ServiceRecommendation
+        path: '/add-new-job/service-recommendation',
+        component: ServiceRecommendation,
       },
       {
-        path: "/add-new-job/review",
-        component: Review
-      }
-    ]
-  }
+        path: '/add-new-job/review',
+        component: Review,
+      },
+    ],
+  },
 ];
 
-const AppRouter = () => {
-  return (
-    <Switch>
-      {routes.map((route, i) => (
-        <RouteWithSubRoutes key={i} {...route} />
-      ))}
-    </Switch>
-  );
-};
+const AppRouter = () => (
+  <Switch>
+    {routes.map(route => (
+      <RouteWithSubRoutes key={route.path} {...route} />
+    ))}
+  </Switch>
+);
 
 export default AppRouter;

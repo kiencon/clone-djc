@@ -6,3 +6,13 @@ export const createVehicleInformation = payload => ({
   type: CREATE_VEHICLE_INFORMATION_REQUEST,
   payload,
 });
+
+export const createVehicleInformationSuccess = response => ({
+  type: CREATE_VEHICLE_INFORMATION_SUCCESS,
+  response,
+});
+
+export const createVehicleInformationError = response => ({
+  type: CREATE_VEHICLE_INFORMATION_ERROR,
+  response,
+});

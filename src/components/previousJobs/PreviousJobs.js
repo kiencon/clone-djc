@@ -1,4 +1,5 @@
 import { Space, Table } from 'antd';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Pagination from './Pagination';
 
@@ -19,7 +20,7 @@ const PreviousJobs = () => {
             {`${dd}-${mm}-${yy}`}
           </>
         );
-      }
+      },
     },
     {
       title: 'Company Name',
@@ -45,40 +46,40 @@ const PreviousJobs = () => {
   ];
 
   const data = [{
-    key: "3",
-    jobId: "ABC123_1587579898",
+    key: '3',
+    jobId: 'ABC123_1587579898',
     date: new Date().toString(),
-    companyName: "ALICE TRANSPORT COMPANY",
-    vehicleRegistrationNumber: "ABC123",
-    driver: "Driver 001"
+    companyName: 'ALICE TRANSPORT COMPANY',
+    vehicleRegistrationNumber: 'ABC123',
+    driver: 'Driver 001',
   }, {
-    key: "4",
-    jobId: "ABC124_1587579898",
+    key: '4',
+    jobId: 'ABC124_1587579898',
     date: new Date().toString(),
-    companyName: "ALICE TRANSPORT COMPANY",
-    vehicleRegistrationNumber: "ABC123",
-    driver: "Driver 001"
+    companyName: 'ALICE TRANSPORT COMPANY',
+    vehicleRegistrationNumber: 'ABC123',
+    driver: 'Driver 001',
   }, {
-    key: "5",
-    jobId: "ABC125_1587579898",
+    key: '5',
+    jobId: 'ABC125_1587579898',
     date: new Date().toString(),
-    companyName: "ALICE TRANSPORT COMPANY",
-    vehicleRegistrationNumber: "ABC123",
-    driver: "Driver 001"
+    companyName: 'ALICE TRANSPORT COMPANY',
+    vehicleRegistrationNumber: 'ABC123',
+    driver: 'Driver 001',
   }, {
-    key: "6",
-    jobId: "ABC126_1587579898",
+    key: '6',
+    jobId: 'ABC126_1587579898',
     date: new Date().toString(),
-    companyName: "ALICE TRANSPORT COMPANY",
-    vehicleRegistrationNumber: "ABC123",
-    driver: "Driver 006"
+    companyName: 'ALICE TRANSPORT COMPANY',
+    vehicleRegistrationNumber: 'ABC123',
+    driver: 'Driver 006',
   }, {
-    key: "7",
-    jobId: "ABC127_1587579898",
+    key: '7',
+    jobId: 'ABC127_1587579898',
     date: new Date().toString(),
-    companyName: "ALICE TRANSPORT COMPANY",
-    vehicleRegistrationNumber: "ABC123",
-    driver: "Driver 007"
+    companyName: 'ALICE TRANSPORT COMPANY',
+    vehicleRegistrationNumber: 'ABC123',
+    driver: 'Driver 007',
   }];
 
   return (

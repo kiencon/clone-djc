@@ -1,8 +1,9 @@
-import { Button, Form, Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
+import { Button, Form, Input } from 'antd';
+import React from 'react';
 
 const DriverAndOwnerInfo = () => {
-  const onFinish = (values) => {
+  const onFinish = values => {
     console.log(values);
   };
   const onFinishFailed = () => alert('onFinishFailed');
@@ -11,7 +12,7 @@ const DriverAndOwnerInfo = () => {
       <div className="driverAndOwnerInfo">
         <h1>Driver and owner information</h1>
         <div className="information">
-          
+
           <div className="form">
             <Form
               name="customer-information"
@@ -26,8 +27,8 @@ const DriverAndOwnerInfo = () => {
                     rules={[
                       {
                         required: true,
-                        message: 'Company Name is required'
-                      }
+                        message: 'Company Name is required',
+                      },
                     ]}
                   >
                     <Input
@@ -95,7 +96,7 @@ const DriverAndOwnerInfo = () => {
                   </Form.Item>
 
                 </div>
-                
+
                 <div className="driverInformation">
                   <h3>Driver Information</h3>
                   <Form.Item
@@ -103,8 +104,8 @@ const DriverAndOwnerInfo = () => {
                     rules={[
                       {
                         required: true,
-                        message: 'Driver Name is required'
-                      }
+                        message: 'Driver Name is required',
+                      },
                     ]}
                   >
                     <Input
@@ -120,8 +121,8 @@ const DriverAndOwnerInfo = () => {
                     rules={[
                       {
                         required: true,
-                        message: 'Driver Contact Number is required'
-                      }
+                        message: 'Driver Contact Number is required',
+                      },
                     ]}
                   >
                     <Input

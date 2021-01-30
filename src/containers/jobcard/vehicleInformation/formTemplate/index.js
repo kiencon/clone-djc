@@ -29,9 +29,7 @@ const VehicleInformationFormTemplate = ({ form, onSubmit }) => {
       >
         <Input
           placeholder="Vehicle Registration Number"
-          suffix={
-            <SearchOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
-                }
+          suffix={<SearchOutlined style={{ color: 'rgba(0,0,0,.45)' }} />}
         />
       </Form.Item>
 

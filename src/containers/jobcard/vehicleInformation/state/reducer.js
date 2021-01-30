@@ -1,5 +1,4 @@
 import immutable from 'immutable';
-import { CREATE_STATUS, UPDATE_STATUS } from '../../../../config/const';
 import {
   CREATE_VEHICLE_INFORMATION_ERROR,
   CREATE_VEHICLE_INFORMATION_REQUEST,
@@ -14,23 +13,11 @@ export const initialState = {
 const init = () => {
   const initValue = immutable.fromJS({
     vehicleInformation: undefined,
-    isLoading: undefined,
-    create: undefined,
-    update: undefined,
   });
 
   return initValue
     .set('vehicleInformation', {
       ...initialState,
-    })
-    .set('isLoading', false)
-    .set('create', {
-      status: CREATE_STATUS.DEFAULT,
-      isLoading: false,
-    })
-    .set('update', {
-      status: UPDATE_STATUS.DEFAULT,
-      isLoading: false,
     });
 };
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
 import DashboardPage from '../containers/dashboard/index';
-import DriverAndOwnerInfo from '../containers/jobcard/components/DriverAndOwnerInfo';
+import DriverAndOwnerInfo from '../containers/jobcard/driverAndOwnerInfo';
 import JobWorkSheet from '../containers/jobcard/components/JobWorkSheet';
-import Review from '../containers/jobcard/components/Review';
+import Review from '../containers/jobcard/review';
 import ServiceRecommendation from '../containers/jobcard/components/ServiceRecommendation';
 import TypeInspection from '../containers/jobcard/components/TypeInspection';
 import VehicleInformation from '../containers/jobcard/vehicleInformation';

@@ -32,3 +32,16 @@
         }
     }
 }
+
+.vehicleInspection {
+    .inspectionForm {
+        display: flex;
+        align-items: center;
+        padding: 0 30px;
+        .selection {
+            .ant-select-selector {
+                min-width: 450px;
+            }
+        }
+    }
+}

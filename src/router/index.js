@@ -1,14 +1,14 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
 import DashboardPage from '../containers/dashboard/index';
-import DriverAndOwnerInfo from '../containers/jobcard/driverAndOwnerInfo';
 import JobWorkSheet from '../containers/jobcard/components/JobWorkSheet';
-import Review from '../containers/jobcard/review';
 import ServiceRecommendation from '../containers/jobcard/components/ServiceRecommendation';
-import TypeInspection from '../containers/jobcard/components/TypeInspection';
-import VehicleInformation from '../containers/jobcard/vehicleInformation';
+import TyreInspection from '../containers/jobcard/components/TyreInspection';
 import VehicleInspection from '../containers/jobcard/components/VehicleInspection';
+import DriverAndOwnerInfo from '../containers/jobcard/driverAndOwnerInfo';
 import JobCardPage from '../containers/jobcard/index';
+import Review from '../containers/jobcard/review';
+import VehicleInformation from '../containers/jobcard/vehicleInformation';
 import PreviousJobs from '../containers/previousJobs/index';
 import RouteWithSubRoutes from './RouteWithSubRoutes';
 
@@ -38,8 +38,8 @@ const routes = [
         component: VehicleInspection,
       },
       {
-        path: '/add-new-job/type-inspection',
-        component: TypeInspection,
+        path: '/add-new-job/tyre-inspection',
+        component: TyreInspection,
       },
       {
         path: '/add-new-job/job-workSheet',

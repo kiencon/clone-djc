@@ -1,8 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
-import {
-  Form, Radio, Select, Input, Button,
-} from 'antd';
+import React from 'react';
 import InspectionForm from './InspectionForm';
 
 const VEHICLE_INSPECTION_DATA = [{
@@ -38,13 +34,6 @@ const VehicleInspection = () => {
   const formTemplates = VEHICLE_INSPECTION_DATA.map(
     item => [item.label, ...InspectionForm(item)],
   );
-  // const [KingPingFormTemplate, kingPingState] = InspectionForm(
-  //   { formName: 'king ping', comments },
-  // );
-  const layout = {
-    labelCol: { span: 8 },
-    wrapperCol: { span: 16 },
-  };
   return (
     <div className="vehicleInspection">
       <h1>Vehicle Inspection</h1>

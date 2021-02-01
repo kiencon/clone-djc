@@ -13,7 +13,7 @@ const JobCardPage = ({ routes }) => {
     name: 'Vehicle Inspection',
     path: '/add-new-job/vehicle-inspection',
   }, {
-    name: 'Type Inspection',
+    name: 'Tyre Inspection',
     path: '/add-new-job/tyre-inspection',
   }, {
     name: 'Job WorkSheet',

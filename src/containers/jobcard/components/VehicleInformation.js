@@ -10,7 +10,7 @@ const VehicleInformation = () => {
   const onFinish = values => {
     console.log(values);
   };
-  const onFinishFailed = () => alert('onFinishFailed');
+  const onFinishFailed = () => console.log('onFinishFailed');
   const onGenderChange = value => console.log(value);
 
   return (

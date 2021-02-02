@@ -30,7 +30,6 @@ const InspectionForm = ({
       </div>
       <div className="ant-col ant-col-12 selection">
         <Select
-          placeholder="Vehicle Type"
           onChange={changeSelectionBox}
           allowClear
           value={value.comment}

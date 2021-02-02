@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'antd';
 import InspectionForm from './InspectionForm';
 
 const VEHICLE_INSPECTION_DATA = [{
@@ -34,12 +35,18 @@ const VehicleInspection = () => {
   const formTemplates = VEHICLE_INSPECTION_DATA.map(
     item => [item.label, ...InspectionForm(item)],
   );
+  const onSubmit = () => console.log(formTemplates.map(e => ({
+    [e[0]]: e[2],
+  })));
   return (
     <div className="vehicleInspection">
       <h1>Vehicle Inspection</h1>
       {
         formTemplates.map(([label, Template]) => <Template key={label} />)
       }
+      <Button onClick={onSubmit} className="btn" htmlType="submit">
+        Continue
+      </Button>
     </div>
   );
 };

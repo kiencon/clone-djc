@@ -1,28 +1,28 @@
 import immutable from 'immutable';
 import {
-  CREATE_DRIVER_OWNER_INFORMATION_REQUEST,
+  CREATE_JOB_WORKSHEET_REQUEST,
 } from './action';
 
 const initialState = {
-  driverAndOwnerInfo: {},
+  jobWorksheet: {},
 };
 
 const init = () => {
   const initValue = immutable.fromJS({
-    driverAndOwnerInfo: undefined,
+    jobWorksheet: undefined,
   });
 
   return initValue
-    .set('driverAndOwnerInfo', {
+    .set('jobWorksheet', {
       ...initialState,
     });
 };
 
-const driverAndOwnerInfoReducer = (state = init(), action) => {
+const jobWorksheetReducer = (state = init(), action) => {
   switch (action.type) {
-    case CREATE_DRIVER_OWNER_INFORMATION_REQUEST: {
+    case CREATE_JOB_WORKSHEET_REQUEST: {
       const { values } = action.payload;
-      return state.set('driverAndOwnerInfo', {
+      return state.set('jobWorksheet', {
         ...values,
       });
     }
@@ -32,4 +32,4 @@ const driverAndOwnerInfoReducer = (state = init(), action) => {
   }
 };
 
-export default driverAndOwnerInfoReducer;
+export default jobWorksheetReducer;

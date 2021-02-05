@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
 import DashboardPage from '../containers/dashboard/index';
-import JobWorkSheet from '../containers/jobcard/components/JobWorkSheet';
+import JobWorkSheet from '../containers/jobcard/jobWorksheet';
 import DriverAndOwnerInfo from '../containers/jobcard/driverAndOwnerInfo';
 import JobCardPage from '../containers/jobcard/index';
 import Review from '../containers/jobcard/review';

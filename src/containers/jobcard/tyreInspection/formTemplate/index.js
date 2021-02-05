@@ -1,213 +1,82 @@
-import { SearchOutlined } from '@ant-design/icons';
 import {
-  Button, Form, Input, Select,
+  Button, Col, Form, Row,
 } from 'antd';
 import React from 'react';
+import InspectionComponent from '../../components/InspectionComponent';
 
-const { Option } = Select;
+const TYRE_INSPECTION_DATA = [{
+  label: 'Misalignment',
+  comments: ['Uneven wear in tyres due to misalignment'],
+}, {
+  label: 'Pattern Mismatch',
+  comments: [
+    'Radial and Nylon tyres on same axle',
+    'Steering pattern tyres at drive axle',
+    'Drive pattern tyres at steering axle',
+  ],
+}, {
+  label: 'Air Pressure Mismatch',
+  comments: [
+    'Mismatch of air pressure in dual tyres',
+    'Uneven pressure in tyres',
+  ],
+}, {
+  label: 'Disc Holes Mismatch',
+  comments: [
+    'Holes mismatch in outer & inner tyres',
+    'Non accessibilty of inner tyre valves (Inner tyre valves bent and touches the rim)',
+  ],
+}, {
+  label: 'Cuts & Damages In Tyres',
+  comments: ['Cuts and damages observed in tyres'],
+}, {
+  label: 'Tyres Which Can Be Removed For Retread?',
+  comments: ['Depth is less than 3mm. Tyres should be removed now for retreading'],
+}];
 
-const VehicleInspectionTemplate = ({ form, onSubmit }) => {
-  const onVehicleTypeChange = () => {
-    // todo
-    // console.log(value);
-  };
-
-  return (
-    <Form
-      name="vehicle-information"
-      form={form}
-      onFinish={onSubmit}
-    >
-      <Form.Item
-        name="vehicleRegistrationNumber"
-        rules={[
-          {
-            required: true,
-            message: 'Vehicle Registration Number is required',
-          },
-        ]}
-      >
-        <Input
-          placeholder="Vehicle Registration Number"
-          suffix={<SearchOutlined style={{ color: 'rgba(0,0,0,.45)' }} />}
-        />
-      </Form.Item>
-
-      <Form.Item
-        name="vehicleType"
-        rules={[
-          {
-            required: true,
-            message: 'Vehicle Type Number is required',
-          },
-        ]}
-      >
-        <Select
-          placeholder="Vehicle Type"
-          onChange={onVehicleTypeChange}
-          allowClear
-        >
-          <Option value="male">male</Option>
-          <Option value="female">female</Option>
-          <Option value="other">other</Option>
-        </Select>
-      </Form.Item>
-
-      <Form.Item
-        name="vehicleBrand"
-        rules={[
-          {
-            required: true,
-            message: 'Vehicle Brand is required',
-          },
-        ]}
-      >
-        <Select
-          placeholder="Vehicle Brand"
-          onChange={onVehicleTypeChange}
-          allowClear
-        >
-          <Option value="male">male</Option>
-          <Option value="female">female</Option>
-          <Option value="other">other</Option>
-        </Select>
-      </Form.Item>
-
-      <Form.Item
-        name="vehicleModel"
-        rules={[
-          {
-            required: true,
-            message: 'Vehicle Model is required',
-          },
-        ]}
-      >
-        <Select
-          placeholder="Vehicle Model"
-          onChange={onVehicleTypeChange}
-          allowClear
-        >
-          <Option value="male">male</Option>
-          <Option value="female">female</Option>
-          <Option value="other">other</Option>
-        </Select>
-      </Form.Item>
-
-      <Form.Item
-        name="vehicleConfiguration"
-        rules={[
-          {
-            required: true,
-            message: 'Vehicle Configuration is required',
-          },
-        ]}
-      >
-        <Select
-          placeholder="Vehicle Configuration"
-          onChange={onVehicleTypeChange}
-          allowClear
-        >
-          <Option value="male">male</Option>
-          <Option value="female">female</Option>
-          <Option value="other">other</Option>
-        </Select>
-      </Form.Item>
-
-      <Form.Item
-        name="roadApplication"
-        rules={[
-          {
-            required: true,
-            message: 'Road Application is required',
-          },
-        ]}
-      >
-        <Select
-          placeholder="Road Application"
-          onChange={onVehicleTypeChange}
-          allowClear
-        >
-          <Option value="male">male</Option>
-          <Option value="female">female</Option>
-          <Option value="other">other</Option>
-        </Select>
-      </Form.Item>
-
-      <Form.Item
-        name="loading"
-        rules={[
-          {
-            required: true,
-            message: 'Loading is required',
-          },
-        ]}
-      >
-        <Select
-          placeholder="Loading"
-          onChange={onVehicleTypeChange}
-          allowClear
-        >
-          <Option value="male">male</Option>
-          <Option value="female">female</Option>
-          <Option value="other">other</Option>
-        </Select>
-      </Form.Item>
-
-      <Form.Item
-        name="tyreSize"
-        rules={[
-          {
-            required: true,
-            message: 'Tyre Size is required',
-          },
-        ]}
-      >
-        <Select
-          placeholder="Tyre Size"
-          onChange={onVehicleTypeChange}
-          allowClear
-        >
-          <Option value="male">male</Option>
-          <Option value="female">female</Option>
-          <Option value="other">other</Option>
-        </Select>
-      </Form.Item>
-
-      <Form.Item
-        name="speedoMeterReading"
-        rules={[
-          {
-            required: true,
-            message: 'Speedo Meter Reading (in km) is required',
-          },
-        ]}
-      >
-        <Input
-          placeholder="Speedo Meter Reading (in km)"
-        />
-      </Form.Item>
-
-      <Form.Item
-        name="averageMonthlyRunning"
-        rules={[
-          {
-            required: true,
-            message: 'Average Monthly Running (in km) is required',
-          },
-        ]}
-      >
-        <Input
-          placeholder="Average Monthly Running (in km)"
-        />
-      </Form.Item>
-
+const TyreInspectionTemplate = ({ form, onSubmit }) => (
+  <Form
+    form={form}
+    name="tyre-inspection"
+    onFinish={onSubmit}
+  >
+    <Row>
+      <Col span={8}>
+        <div><h3>Vehicle parts inspection</h3></div>
+      </Col>
+      <Col span={4}>
+        <div />
+      </Col>
+      <Col span={12}>
+        <div><h3>Comments</h3></div>
+      </Col>
+      <Col span={8}>
+        <div />
+      </Col>
+      <Col span={4}>
+        <div>
+          <span style={{ paddingRight: '30px' }}>NO</span>
+          <span>YES</span>
+        </div>
+      </Col>
+      <Col span={12}>
+        <div />
+      </Col>
+    </Row>
+    {
+      TYRE_INSPECTION_DATA.map(({ label, comments }) => (
+        <InspectionComponent key={label} serviceName={label} comments={comments} />
+      ))
+    }
+    <div className="wrapper-btn">
       <Form.Item>
         <Button className="btn" htmlType="submit">
           Continue
         </Button>
       </Form.Item>
-    </Form>
-  );
-};
+    </div>
 
-export default VehicleInspectionTemplate;
+  </Form>
+);
+
+export default TyreInspectionTemplate;

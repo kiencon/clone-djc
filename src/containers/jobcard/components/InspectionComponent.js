@@ -5,7 +5,7 @@ import React from 'react';
 
 const InspectionComponent = ({ serviceName, comments }) => (
   <Row>
-    <Col span={4}>
+    <Col span={8}>
       <div><span>{serviceName}</span></div>
     </Col>
     <Col span={4}>
@@ -24,7 +24,7 @@ const InspectionComponent = ({ serviceName, comments }) => (
         </Radio.Group>
       </Form.Item>
     </Col>
-    <Col span={16}>
+    <Col span={12}>
       <Form.Item
         noStyle
         shouldUpdate={(

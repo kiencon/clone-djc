@@ -44,21 +44,8 @@
     }
 }
 
-.vehicleInspection, .typeInspection {
-    .inspectionForm {
-        display: flex;
-        align-items: center;
-        padding: 0 30px;
-        .selection {
-            .ant-select-selector {
-                min-width: 450px;
-            }
-        }
-    }
-    padding-bottom: 30px;
-}
-
-.jobWorkSheet {
+.vihicle-inspection,
+.job-worksheet {
     h1, h3 {
         font-weight: bold;
         text-align: center;
@@ -74,31 +61,82 @@
         font-size: 25px;
     }
 
-    .inputJobWorkSheet {
-        display: flex;
-        align-items: center;
-        min-height: 45px;
+    p {
+        font-size: 20px;
+        color: $bg-color;
     }
 
-    .type {
-        min-width: 120px;
+    .ant-radio-wrapper {
+        padding-right: 20px;
     }
 
-    .input {
-        padding: 5px 10px;
+    .wrapper-btn {
+        max-width: 300px;
+        margin: 0 auto;
 
-        input {
-            border-radius: 2px;
-            width: 60px;
-            outline: none;
-            border: 1px solid gray;
+        .btn {
+            height: 43px;
+            border-radius: 5px;
+            width: 100%;
         }
     }
+}
 
-    .checkBoxJobWorkSheet {
-        height: 45px;
+.vehicleInspection, .typeInspection {
+    .inspectionForm {
         display: flex;
         align-items: center;
-        padding: 0 20px;
+        padding: 0 30px;
+        .selection {
+            .ant-select-selector {
+                min-width: 450px;
+            }
+        }
     }
+    padding-bottom: 30px;
 }
+
+// .jobWorkSheet {
+//     h1, h3 {
+//         font-weight: bold;
+//         text-align: center;
+//         font-family: BebasNeue-Bold;
+//     }
+
+//     h1 {
+//         font-size: 46px;
+//     }
+
+//     h3 {
+//         text-align: left;
+//         font-size: 25px;
+//     }
+
+//     .inputJobWorkSheet {
+//         display: flex;
+//         align-items: center;
+//         min-height: 45px;
+//     }
+
+//     .type {
+//         min-width: 120px;
+//     }
+
+//     .input {
+//         padding: 5px 10px;
+
+//         input {
+//             border-radius: 2px;
+//             width: 60px;
+//             outline: none;
+//             border: 1px solid gray;
+//         }
+//     }
+
+//     .checkBoxJobWorkSheet {
+//         height: 45px;
+//         display: flex;
+//         align-items: center;
+//         padding: 0 20px;
+//     }
+// }

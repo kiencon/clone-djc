@@ -1,6 +1,0 @@
-export const CREATE_DRIVER_OWNER_INFORMATION_REQUEST = 'CREATE_DRIVER_OWNER_INFORMATION_REQUEST';
-
-export const createDriverAndOwnerInfo = payload => ({
-  type: CREATE_DRIVER_OWNER_INFORMATION_REQUEST,
-  payload,
-});

@@ -3,7 +3,7 @@ import React, { useCallback, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { FORM_TYPE } from '../../../config/const';
 import DriverAndOwnerInfoFormTemplate from './formTemplate/index';
-import { createDriverAndOwnerInfo } from './state/action';
+import { createVehicleInspection } from './state/action';
 
 const DriverAndOwnerInfo = () => {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ const DriverAndOwnerInfo = () => {
   const [form] = Form.useForm();
 
   const onAdd = useCallback(values => {
-    dispatch(createDriverAndOwnerInfo({
+    dispatch(createVehicleInspection({
       values,
     }));
   }, [dispatch]);
@@ -22,20 +22,15 @@ const DriverAndOwnerInfo = () => {
   });
 
   return (
-    <>
-      <div className="driverAndOwnerInfo">
-        <h1>Vehicle Inspection</h1>
-        <div className="information">
-
-          <div className="form">
-            <DriverAndOwnerInfoFormTemplate
-              form={form}
-              onSubmit={formRef.current.onSubmit}
-            />
-          </div>
-        </div>
+    <div className="vihicle-inspection">
+      <h1>Vehicle Inspection</h1>
+      <div className="form">
+        <DriverAndOwnerInfoFormTemplate
+          form={form}
+          onSubmit={formRef.current.onSubmit}
+        />
       </div>
-    </>
+    </div>
   );
 };
 

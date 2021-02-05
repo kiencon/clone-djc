@@ -1,9 +1,7 @@
-/* eslint-disable no-unused-vars */
 import {
-  Button, Col, Form, Row,
+  Button, Col, Form, Row, Checkbox, Input,
 } from 'antd';
 import React from 'react';
-import InspectionComponent from './InspectionComponent';
 
 const SERVICE_PROVIDE = [
   'Vehicle Inspection',
@@ -26,34 +24,20 @@ const TYRES_TYPE = [
   'Extension Valves',
 ];
 
-const VEHICLE_INSPECTION_DATA = [{
-  label: 'King Pin',
-  comments: ['Shake in king pin'],
-}, {
-  label: 'Wheel Bearing',
-  comments: ['Shake in wheel bearing. Can cause tyre wear'],
-}, {
-  label: 'Stearing Ball Joints',
-  comments: ['Steering ball joints worn out'],
-}, {
-  label: 'Tie Rod',
-  comments: ['Excessive play in tie rod', 'Bent tie rod'],
-}, {
-  label: 'Steering Wheel',
-  comments: ['Streering wheel play'],
-}, {
-  label: 'Bushes In Leafs',
-  comments: ['Bushes worn out in leafs'],
-}, {
-  label: 'Front Leaf Spring',
-  comments: ['Misaligned leafs', 'Loose U clamps', 'Broken leafs'],
-}, {
-  label: 'Rear Leaf Spring',
-  comments: ['Misaligned leafs', 'Loose U clamps', 'Broken leafs', 'Center bolt cut. Can lead to fast wear'],
-}, {
-  label: 'Rim Disc',
-  comments: ['Disc damaged', 'Disc bent', 'Incorrect rim size. Will damage tyre bead'],
-}];
+const CheckboxComponent = ({ serviceName }) => (
+  <Form.Item>
+    <Form.Item name={serviceName} valuePropName="checked" noStyle>
+      <Checkbox>{serviceName}</Checkbox>
+    </Form.Item>
+  </Form.Item>
+);
+
+const TyreInputComponent = ({ tyre }) => (
+  <Form.Item labelCol={{ span: 6 }} name={tyre} label={tyre}>
+    <Input />
+    <span>Tyres</span>
+  </Form.Item>
+);
 
 const JobWorkSheet = () => {
   const onSubmit = value => {
@@ -70,33 +54,25 @@ const JobWorkSheet = () => {
           onFinish={onSubmit}
         >
           <Row>
-            <Col span={4}>
-              <div><span>Vehicle parts inspection</span></div>
+            <Col span={12}>
+              <div><h3>Tick if provided</h3></div>
             </Col>
-            <Col span={4}>
-              <div />
-            </Col>
-            <Col span={16}>
-              <div><span>Comments</span></div>
-            </Col>
-            <Col span={4}>
-              <div />
-            </Col>
-            <Col span={4}>
-              <div>
-                <span>OK</span>
-                <span>NOT OK</span>
-              </div>
-            </Col>
-            <Col span={16}>
-              <div />
+            <Col span={12}>
+              <div><h3>Input number of tyres</h3></div>
             </Col>
           </Row>
-          {
-            VEHICLE_INSPECTION_DATA.map(({ label, comments }) => (
-              <InspectionComponent key={label} serviceName={label} comments={comments} />
-            ))
-          }
+          <Row>
+            <Col span={8}>
+              {
+                SERVICE_PROVIDE.map(serviceName => <CheckboxComponent key={serviceName} serviceName={serviceName} />)
+              }
+            </Col>
+            <Col span={16}>
+              {
+                TYRES_TYPE.map(tyre => <TyreInputComponent key={tyre} tyre={tyre} />)
+              }
+            </Col>
+          </Row>
           <Form.Item>
             <Button className="btn" htmlType="submit">
               Continue

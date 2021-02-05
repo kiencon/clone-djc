@@ -1,6 +1,6 @@
-export const CREATE_DRIVER_OWNER_INFORMATION_REQUEST = 'CREATE_DRIVER_OWNER_INFORMATION_REQUEST';
+export const CREATE_VEHICLE_INSPECTION_REQUEST = 'CREATE_VEHICLE_INSPECTION_REQUEST';
 
-export const createDriverAndOwnerInfo = payload => ({
-  type: CREATE_DRIVER_OWNER_INFORMATION_REQUEST,
+export const createVehicleInspection = payload => ({
+  type: CREATE_VEHICLE_INSPECTION_REQUEST,
   payload,
 });

@@ -1,28 +1,28 @@
 import immutable from 'immutable';
 import {
-  CREATE_DRIVER_OWNER_INFORMATION_REQUEST,
+  CREATE_VEHICLE_INSPECTION_REQUEST,
 } from './action';
 
 const initialState = {
-  driverAndOwnerInfo: {},
+  vehicleInspection: {},
 };
 
 const init = () => {
   const initValue = immutable.fromJS({
-    driverAndOwnerInfo: undefined,
+    vehicleInspection: undefined,
   });
 
   return initValue
-    .set('driverAndOwnerInfo', {
+    .set('vehicleInspection', {
       ...initialState,
     });
 };
 
-const driverAndOwnerInfoReducer = (state = init(), action) => {
+const vehicleInspectionReducer = (state = init(), action) => {
   switch (action.type) {
-    case CREATE_DRIVER_OWNER_INFORMATION_REQUEST: {
+    case CREATE_VEHICLE_INSPECTION_REQUEST: {
       const { values } = action.payload;
-      return state.set('driverAndOwnerInfo', {
+      return state.set('vehicleInspection', {
         ...values,
       });
     }
@@ -32,4 +32,4 @@ const driverAndOwnerInfoReducer = (state = init(), action) => {
   }
 };
 
-export default driverAndOwnerInfoReducer;
+export default vehicleInspectionReducer;

@@ -2,13 +2,13 @@ import React from 'react';
 import { Switch } from 'react-router-dom';
 import DashboardPage from '../containers/dashboard/index';
 import JobWorkSheet from '../containers/jobcard/components/JobWorkSheet';
-import ServiceRecommendation from '../containers/jobcard/components/ServiceRecommendation';
-import TyreInspection from '../containers/jobcard/components/TyreInspection';
-import VehicleInspection from '../containers/jobcard/components/VehicleInspection';
 import DriverAndOwnerInfo from '../containers/jobcard/driverAndOwnerInfo';
 import JobCardPage from '../containers/jobcard/index';
 import Review from '../containers/jobcard/review';
+import ServiceRecommendation from '../containers/jobcard/serviceRecommendation';
+import TyreInspection from '../containers/jobcard/tyreInspection';
 import VehicleInformation from '../containers/jobcard/vehicleInformation';
+import VehicleInspection from '../containers/jobcard/vehicleInspection';
 import PreviousJobs from '../containers/previousJobs/index';
 import RouteWithSubRoutes from './RouteWithSubRoutes';
 

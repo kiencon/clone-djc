@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
 import {
-  Button, Col, Form, Radio, Row, Select,
+  Button, Col, Form, Row,
 } from 'antd';
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
+import InspectionComponent from './InspectionComponent';
 
 const SERVICE_PROVIDE = [
   'Vehicle Inspection',
@@ -54,74 +55,6 @@ const VEHICLE_INSPECTION_DATA = [{
   comments: ['Disc damaged', 'Disc bent', 'Incorrect rim size. Will damage tyre bead'],
 }];
 
-const InputJobWorkSheet = type => {
-  const htmlElRef = useRef();
-  const [value, setValue] = useState('');
-  const onChange = event => {
-    setValue(event.target.value);
-  };
-  useEffect(() => {
-    if (value) {
-      htmlElRef.current.focus();
-    }
-  }, [htmlElRef, value]);
-  const Template = () => (
-    <div className="inputJobWorkSheet">
-      <div className="type">
-        <span>{type}</span>
-      </div>
-      <div className="input">
-        <input value={value} ref={htmlElRef} onChange={onChange} />
-      </div>
-      <div className="type">
-        <span>Tyres</span>
-      </div>
-    </div>
-  );
-  return [Template, value];
-};
-
-const Test = ({ serviceName, comments, defaultValue }) => {
-  const { service, comment } = defaultValue;
-  return (
-    <Row>
-      <Col span={8}>
-        <div><span>{serviceName}</span></div>
-      </Col>
-      <Col span={8}>
-        <Form.Item
-          name={`${serviceName}-radio-btn`}
-        >
-          <Radio.Group
-            value={service}
-          >
-            <Radio value={0} />
-            <Radio value={1} />
-          </Radio.Group>
-        </Form.Item>
-      </Col>
-      <Col span={8}>
-        <Form.Item
-          name={`${serviceName}-dropdown`}
-          key={serviceName}
-        >
-          <Select
-            allowClear
-            value={comment}
-            disabled={service}
-          >
-            {
-              comments.map(cmt => (
-                <Select.Option value={cmt} key={cmt}>{cmt}</Select.Option>
-              ))
-            }
-          </Select>
-        </Form.Item>
-      </Col>
-    </Row>
-  );
-};
-
 const JobWorkSheet = () => {
   const onSubmit = value => {
     console.log(value);
@@ -136,9 +69,32 @@ const JobWorkSheet = () => {
           name="test"
           onFinish={onSubmit}
         >
+          <Row>
+            <Col span={4}>
+              <div><span>Vehicle parts inspection</span></div>
+            </Col>
+            <Col span={4}>
+              <div />
+            </Col>
+            <Col span={16}>
+              <div><span>Comments</span></div>
+            </Col>
+            <Col span={4}>
+              <div />
+            </Col>
+            <Col span={4}>
+              <div>
+                <span>OK</span>
+                <span>NOT OK</span>
+              </div>
+            </Col>
+            <Col span={16}>
+              <div />
+            </Col>
+          </Row>
           {
-            SERVICE_PROVIDE.map(service => (
-              <Test key={service} serviceName={service} />
+            VEHICLE_INSPECTION_DATA.map(({ label, comments }) => (
+              <InspectionComponent key={label} serviceName={label} comments={comments} />
             ))
           }
           <Form.Item>

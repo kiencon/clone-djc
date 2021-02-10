@@ -29,11 +29,11 @@ const TYRES_TYPE = [
 const JobWorksheetTemplate = ({ form, onSubmit }) => (
   <Form
     form={form}
-    name="test"
+    name="jobWorksheet"
     onFinish={onSubmit}
   >
     <Row>
-      <Col span={12}>
+      <Col span={10} offset={2}>
         <div><h3>Tick if provided</h3></div>
       </Col>
       <Col span={12}>
@@ -41,12 +41,12 @@ const JobWorksheetTemplate = ({ form, onSubmit }) => (
       </Col>
     </Row>
     <Row>
-      <Col span={8}>
+      <Col span={10} offset={2}>
         {
           SERVICE_PROVIDE.map(serviceName => <CheckboxComponent key={serviceName} serviceName={serviceName} />)
         }
       </Col>
-      <Col span={16}>
+      <Col span={12}>
         {
           TYRES_TYPE.map(tyre => <TyreInputComponent key={tyre} tyre={tyre} />)
         }

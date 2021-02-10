@@ -31,4 +31,48 @@
       }
     }
   }
+
+  .serviceRecommendation {
+    h1 {
+      font-size: 46px;
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      background-image: url('../../assets/images/info-icon.png');
+      background-repeat: no-repeat;
+      padding-left: 30px;
+
+      p {
+        margin: 0;
+      }
+
+      .ant-form-item {
+        width: 300px;
+        padding-left: 30px;
+        margin: 0;
+      }
+    }
+  }
+
+  .wrapper-btn {
+    max-width: 300px;
+    margin: 0 auto;
+
+    .btn {
+      height: 43px;
+      border-radius: 5px;
+      width: 100%;
+      background: #5c2e91;
+      color: #fff;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+  }
+}
+
+.ant-select-dropdown {
+  min-width: fit-content!important;
 }

@@ -130,7 +130,7 @@ const DriverAndOwnerInfoFormTemplate = ({ form, onSubmit }) => (
         </Form.Item>
       </div>
     </div>
-    <div className="formSubmit">
+    <div className="wrapper-btn">
       <Form.Item>
         <Button className="btn" htmlType="submit">
           Continue

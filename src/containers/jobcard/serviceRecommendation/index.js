@@ -2,16 +2,16 @@ import { Form } from 'antd';
 import React, { useCallback, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { FORM_TYPE } from '../../../config/const';
-import DriverAndOwnerInfoFormTemplate from './formTemplate/index';
-import { createDriverAndOwnerInfo } from './state/action';
+import ServiceRecommendationTemplate from './formTemplate/index';
+import { createServiceRecommendation } from './state/action';
 
-const DriverAndOwnerInfo = () => {
+const ServiceRecommendation = () => {
   const dispatch = useDispatch();
 
   const [form] = Form.useForm();
 
   const onAdd = useCallback(values => {
-    dispatch(createDriverAndOwnerInfo({
+    dispatch(createServiceRecommendation({
       values,
     }));
   }, [dispatch]);
@@ -23,20 +23,17 @@ const DriverAndOwnerInfo = () => {
 
   return (
     <>
-      <div className="driverAndOwnerInfo">
-        <h1>Vehicle Inspection</h1>
-        <div className="information">
-
-          <div className="form">
-            <DriverAndOwnerInfoFormTemplate
-              form={form}
-              onSubmit={formRef.current.onSubmit}
-            />
-          </div>
+      <div className="serviceRecommendation">
+        <h1>Service recommendation</h1>
+        <div className="form">
+          <ServiceRecommendationTemplate
+            form={form}
+            onSubmit={formRef.current.onSubmit}
+          />
         </div>
       </div>
     </>
   );
 };
 
-export default DriverAndOwnerInfo;
+export default ServiceRecommendation;

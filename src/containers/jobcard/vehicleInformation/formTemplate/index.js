@@ -201,11 +201,13 @@ const VehicleInformationFormTemplate = ({ form, onSubmit }) => {
         />
       </Form.Item>
 
-      <Form.Item>
-        <Button className="btn" htmlType="submit">
-          Continue
-        </Button>
-      </Form.Item>
+      <div className="wrapper-btn">
+        <Form.Item>
+          <Button className="btn" htmlType="submit">
+            Continue
+          </Button>
+        </Form.Item>
+      </div>
     </Form>
   );
 };

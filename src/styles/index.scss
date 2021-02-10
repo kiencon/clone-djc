@@ -10,7 +10,6 @@
 // container styles
 @import '../containers/jobcard/index.scss';
 
-
 html {
   --antd-wave-shadow-color: $bg-color;
 }
@@ -41,11 +40,5 @@ h1 {
 .form {
   .ant-row {
     justify-content: center;
-  }
-
-  .ant-btn.btn {
-    width: 100%;
-    background: #5c2e91;
-    color: #fff;
   }
 }

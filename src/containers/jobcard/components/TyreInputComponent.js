@@ -4,8 +4,11 @@ import {
 import React from 'react';
 
 const TyreInputComponent = ({ tyre }) => (
-  <Form.Item labelCol={{ span: 6 }} name={tyre} label={tyre}>
-    <Input />
+  <Form.Item className="tyre-ipt">
+    <span className="w120">{tyre}</span>
+    <Form.Item name={tyre}>
+      <Input />
+    </Form.Item>
     <span>Tyres</span>
   </Form.Item>
 );

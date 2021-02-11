@@ -2,7 +2,7 @@ import { Form } from 'antd';
 import React, { useCallback, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { FORM_TYPE } from '../../../config/const';
-import DriverAndOwnerInfoFormTemplate from './formTemplate/index';
+import TyreInspectionTemplate from './formTemplate/index';
 import { createVehicleInspection } from './state/action';
 
 const DriverAndOwnerInfo = () => {
@@ -23,9 +23,9 @@ const DriverAndOwnerInfo = () => {
 
   return (
     <div className="vihicle-inspection">
-      <h1>Vehicle Inspection</h1>
+      <h1>Tyre Inspection</h1>
       <div className="form">
-        <DriverAndOwnerInfoFormTemplate
+        <TyreInspectionTemplate
           form={form}
           onSubmit={formRef.current.onSubmit}
         />

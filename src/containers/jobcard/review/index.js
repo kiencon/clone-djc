@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Form } from 'antd';
 import React, { useCallback, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,31 +8,48 @@ import { createJobcard } from './state/action';
 import {
   selectVehicleInformation,
   selectDriverAndOwnerInfo,
+  selectVehicleInspection,
+  selectTyreInspection,
+  selectJobWorksheet,
+  selectServiceRecommendation,
 } from './state/selector';
 
-const DriverAndOwnerInfo = () => {
+const ReviewInfo = () => {
   const {
     vehicleInformation,
     driverAndOwnerInfo,
+    vehicleInspection,
+    tyreInspection,
+    jobWorksheet,
+    serviceRecommendation,
   } = useSelector(
     state => ({
       vehicleInformation: selectVehicleInformation(state),
       driverAndOwnerInfo: selectDriverAndOwnerInfo(state),
+      vehicleInspection: selectVehicleInspection(state),
+      tyreInspection: selectTyreInspection(state),
+      jobWorksheet: selectJobWorksheet(state),
+      serviceRecommendation: selectServiceRecommendation(state),
     }),
   );
-
-  console.log('vehicleInformation', vehicleInformation);
-  console.log('driverAndOwnerInfo', driverAndOwnerInfo);
 
   const dispatch = useDispatch();
 
   const [form] = Form.useForm();
 
-  const onAdd = useCallback(values => {
-    dispatch(createJobcard({
-      values,
-    }));
-  }, [dispatch]);
+  // const onAdd = useCallback(values => {
+  //   dispatch(createJobcard({
+  //     values,
+  //   }));
+  // }, [dispatch]);
+  const onAdd = () => {
+    console.log('vehicleInformation', vehicleInformation);
+    console.log('driverAndOwnerInfo', driverAndOwnerInfo);
+    console.log('tyreInspection', tyreInspection);
+    console.log('vehicleInspection', vehicleInspection);
+    console.log('jobWorksheet', jobWorksheet);
+    console.log('serviceRecommendation', serviceRecommendation);
+  };
 
   const formRef = useRef({
     formType: FORM_TYPE.ADD,
@@ -42,18 +60,15 @@ const DriverAndOwnerInfo = () => {
     <>
       <div className="review">
         <h1>Review</h1>
-        <div className="review">
-
-          <div className="form">
-            <ReviewInfoFormTemplate
-              form={form}
-              onSubmit={formRef.current.onSubmit}
-            />
-          </div>
+        <div className="form">
+          <ReviewInfoFormTemplate
+            form={form}
+            onSubmit={formRef.current.onSubmit}
+          />
         </div>
       </div>
     </>
   );
 };
 
-export default DriverAndOwnerInfo;
+export default ReviewInfo;

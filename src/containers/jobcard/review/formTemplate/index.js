@@ -7,7 +7,7 @@ const ReviewInfoFormTemplate = ({ form, onSubmit }) => (
     form={form}
     onFinish={onSubmit}
   >
-    <div className="formSubmit">
+    <div className="wrapper-btn">
       <Form.Item>
         <Button className="btn" htmlType="submit">
           Save Job

@@ -1,5 +1,5 @@
 .vehicle-information,
-.driverAndOwnerInfo {
+.driverAndOwnerInfom {
     h1, h3 {
         font-weight: bold;
         text-align: center;
@@ -46,7 +46,7 @@
 
 .vihicle-inspection,
 .job-worksheet {
-    h1, h3 {
+    h1, h2, h3 {
         font-weight: bold;
         text-align: center;
         font-family: BebasNeue-Bold;
@@ -54,6 +54,11 @@
 
     h1 {
         font-size: 46px;
+    }
+
+    h2 {
+        font-size: 36px;
+        text-align: left;
     }
 
     h3 {
@@ -79,6 +84,34 @@
             border-radius: 5px;
             width: 100%;
         }
+    }
+}
+
+.review {
+    h1, h2, h3 {
+        font-weight: bold;
+        text-align: center;
+        font-family: BebasNeue-Bold;
+    }
+
+    h1 {
+        font-size: 46px;
+    }
+
+    h2 {
+        font-size: 36px;
+        text-align: left;
+    }
+
+    h3 {
+        text-align: left;
+        font-size: 25px;
+    }
+    
+    p {
+        font-size: 14px;
+        color: $bg-color;
+        margin-bottom: 5px;
     }
 }
 

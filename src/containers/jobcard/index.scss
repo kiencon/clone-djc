@@ -1,6 +1,17 @@
 @import '../../styles/variables';
 @import './components/jobcard.scss';
 
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .jobcard {
   .jobcard-nav {
     margin-top: -15px;

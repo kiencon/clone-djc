@@ -12,7 +12,11 @@ import {
   selectServiceRecommendation,
 } from './state/selector';
 
-import VehiclePartsInspectionReview from './formTemplate/vehiclePartsInspection';
+import InspectionReview from './formTemplate/vehiclePartsInspection';
+import {
+  toVehicleInspectionArray,
+  toTyreInspectionArray,
+} from '../utils/inspectionHelper';
 
 const ReviewInfo = () => {
   const {
@@ -94,11 +98,15 @@ const ReviewInfo = () => {
           </Col>
           <Col span={24}>
             <h2>Vehicle inspection</h2>
-            <VehiclePartsInspectionReview />
+            <InspectionReview
+              inspectionArray={toVehicleInspectionArray(vehicleInspection)}
+            />
           </Col>
           <Col span={24}>
             <h2>Tyre inspection</h2>
-            <VehiclePartsInspectionReview />
+            <InspectionReview
+              inspectionArray={toTyreInspectionArray(tyreInspection)}
+            />
           </Col>
           <Col span={24}>
             <h2>Job Worksheet</h2>
@@ -134,7 +142,7 @@ const ReviewInfo = () => {
               </Col>
             </Row>
           </Col>
-          <Col span={24}>
+          <Col span={24} className="serviceRecommendation">
             <h2>Service recommendation</h2>
             <ul>
               <li>
@@ -145,7 +153,7 @@ const ReviewInfo = () => {
               </li>
               <li>
                 <p>Other Observations and Recommendations: </p>
-                <p>{serviceRecommendation.otherRecommendation}</p>
+                <p className="mr-20">{serviceRecommendation.otherRecommendation}</p>
               </li>
             </ul>
           </Col>

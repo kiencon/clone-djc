@@ -3,35 +3,9 @@ import {
 } from 'antd';
 import React from 'react';
 import InspectionComponent from '../../components/InspectionComponent';
-
-const VEHICLE_INSPECTION_DATA = [{
-  label: 'King Pin',
-  comments: ['Shake in king pin'],
-}, {
-  label: 'Wheel Bearing',
-  comments: ['Shake in wheel bearing. Can cause tyre wear'],
-}, {
-  label: 'Stearing Ball Joints',
-  comments: ['Steering ball joints worn out'],
-}, {
-  label: 'Tie Rod',
-  comments: ['Excessive play in tie rod', 'Bent tie rod'],
-}, {
-  label: 'Steering Wheel',
-  comments: ['Streering wheel play'],
-}, {
-  label: 'Bushes In Leafs',
-  comments: ['Bushes worn out in leafs'],
-}, {
-  label: 'Front Leaf Spring',
-  comments: ['Misaligned leafs', 'Loose U clamps', 'Broken leafs'],
-}, {
-  label: 'Rear Leaf Spring',
-  comments: ['Misaligned leafs', 'Loose U clamps', 'Broken leafs', 'Center bolt cut. Can lead to fast wear'],
-}, {
-  label: 'Rim Disc',
-  comments: ['Disc damaged', 'Disc bent', 'Incorrect rim size. Will damage tyre bead'],
-}];
+import {
+  VEHICLE_INSPECTION_DATA,
+} from '../../utils/inspectionHelper';
 
 const VehicleInspectionTemplate = ({ form, onSubmit }) => (
   <Form

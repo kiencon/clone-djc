@@ -88,6 +88,24 @@ ul {
   }
 }
 
+.login {
+  max-width: 300px;
+  .wrapper-btn {
+    max-width: 300px;
+    margin: 0 auto;
+
+    .btn {
+      height: 43px;
+      border-radius: 5px;
+      width: 100%;
+      background: #5c2e91;
+      color: #fff;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+  }
+}
+
 .ant-select-dropdown {
   min-width: fit-content!important;
 }

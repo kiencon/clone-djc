@@ -5,6 +5,7 @@ import vehicleInspectionReducer from '../containers/jobcard/vehicleInspection/st
 import tyreInspectionReducer from '../containers/jobcard/tyreInspection/state/reducer';
 import serviceRecommendationReducer from '../containers/jobcard/serviceRecommendation/state/reducer';
 import jobWorksheetReducer from '../containers/jobcard/jobWorksheet/state/reducer';
+import loggedInformationReducer from '../containers/login/state/reducer';
 
 const reducer = combineReducers({
   vehicleInformation: vehicleInformationReducer,
@@ -13,6 +14,7 @@ const reducer = combineReducers({
   tyreInspection: tyreInspectionReducer,
   serviceRecommendation: serviceRecommendationReducer,
   jobWorksheet: jobWorksheetReducer,
+  loggedInformation: loggedInformationReducer,
 });
 
 export default reducer;

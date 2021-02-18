@@ -1,27 +1,74 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
-import Login from '../../components/login/Login';
+/* eslint-disable no-unused-vars */
+import { Form } from 'antd';
+import React, {
+  useRef, useEffect,
+} from 'react';
+import {
+  useHistory,
+  useLocation,
+} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { FORM_TYPE } from '../../config/const';
+import LoginFormTemplate from './formTemplate/index';
+import {
+  login, handleReloadPage,
+} from './state/action';
+import { selectLoggedInformation } from './state/selector';
 
-const LoginPage = () => {
+const Login = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
+  const location = useLocation();
+  const { from } = location.state || { from: { pathname: '/' } };
 
-  const onFinish = ({ username }) => {
-    localStorage.setItem('user', username);
-    history.push('/dashboard');
+  const {
+    loggedInformation,
+  } = useSelector(
+    state => ({
+      loggedInformation: selectLoggedInformation(state),
+    }),
+  );
+
+  // handle reload page when user had logged
+  // using useEffect with an empty array for run one time
+  useEffect(() => {
+    if (localStorage.getItem('isLoggedD2Tyres')) {
+      dispatch(handleReloadPage());
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (loggedInformation.isLogged) {
+      history.replace(from);
+    }
+  }, [from, history, loggedInformation.isLogged]);
+
+  const [form] = Form.useForm();
+
+  const onAdd = values => {
+    dispatch(login({
+      values,
+    }));
   };
 
-  const onFinishFailed = errorInfo => {
-    // todo toast notify
-    alert('Failed:', JSON.stringify(errorInfo, null, 2));
-  };
+  const formRef = useRef({
+    formType: FORM_TYPE.ADD,
+    onSubmit: onAdd,
+  });
 
   return (
-    <Login
-      asdsd={1234}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-    />
+    <>
+      <div className="login container">
+        <h1>Login</h1>
+        <div className="form">
+          <LoginFormTemplate
+            form={form}
+            onSubmit={formRef.current.onSubmit}
+          />
+        </div>
+      </div>
+    </>
   );
 };
 
-export default LoginPage;
+export default Login;

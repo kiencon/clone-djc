@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { SearchOutlined } from '@ant-design/icons';
 import {
   Button, Form, Input, Select,
@@ -44,12 +45,12 @@ const VehicleInformationFormTemplate = ({ form, onSubmit }) => {
       >
         <Select
           placeholder="Vehicle Type"
-          onChange={onVehicleTypeChange}
           allowClear
         >
-          <Option value="male">male</Option>
-          <Option value="female">female</Option>
-          <Option value="other">other</Option>
+          <Option value="Truck">Truck</Option>
+          <Option value="Bus and Coach">Bus and Coach</Option>
+          <Option value="ICV">ICV</Option>
+          <Option value="LCV">LCV</Option>
         </Select>
       </Form.Item>
 
@@ -64,12 +65,14 @@ const VehicleInformationFormTemplate = ({ form, onSubmit }) => {
       >
         <Select
           placeholder="Vehicle Brand"
-          onChange={onVehicleTypeChange}
           allowClear
         >
-          <Option value="male">male</Option>
-          <Option value="female">female</Option>
-          <Option value="other">other</Option>
+          <Option value="Ashok Leyland">Ashok Leyland</Option>
+          <Option value="Bharat Benz">Bharat Benz</Option>
+          <Option value="Eicher">Eicher</Option>
+          <Option value="Tata">Tata</Option>
+          <Option value="Mahindra">Mahindra</Option>
+          <Option value="Others">Others</Option>
         </Select>
       </Form.Item>
 
@@ -84,12 +87,13 @@ const VehicleInformationFormTemplate = ({ form, onSubmit }) => {
       >
         <Select
           placeholder="Vehicle Model"
-          onChange={onVehicleTypeChange}
           allowClear
         >
-          <Option value="male">male</Option>
-          <Option value="female">female</Option>
-          <Option value="other">other</Option>
+          <Option value="3531">3531</Option>
+          <Option value="Pro 5025">Pro 5025</Option>
+          <Option value="Pro 6031">Pro 6031</Option>
+          <Option value="Pro 6037">Pro 6037</Option>
+          <Option value="Others">Others</Option>
         </Select>
       </Form.Item>
 
@@ -104,12 +108,13 @@ const VehicleInformationFormTemplate = ({ form, onSubmit }) => {
       >
         <Select
           placeholder="Vehicle Configuration"
-          onChange={onVehicleTypeChange}
           allowClear
         >
-          <Option value="male">male</Option>
-          <Option value="female">female</Option>
-          <Option value="other">other</Option>
+          <Option value="4x2 (6 Wheeler)">4x2 (6 Wheeler)</Option>
+          <Option value="6x2 (10 Wheeler)">6x2 (10 Wheeler)</Option>
+          <Option value="6x4 (10 Wheeler)">6x4 (10 Wheeler)</Option>
+          <Option value="8x2x4 (Twin steer 12 W)">8x2x4 (Twin steer 12 W)</Option>
+          <Option value="8x4 (12 Wheeler)">8x4 (12 Wheeler)</Option>
         </Select>
       </Form.Item>
 
@@ -124,12 +129,11 @@ const VehicleInformationFormTemplate = ({ form, onSubmit }) => {
       >
         <Select
           placeholder="Road Application"
-          onChange={onVehicleTypeChange}
           allowClear
         >
-          <Option value="male">male</Option>
-          <Option value="female">female</Option>
-          <Option value="other">other</Option>
+          <Option value="Moderate Load">Moderate Load</Option>
+          <Option value="Rated Load">Rated Load</Option>
+          <Option value="Long Distance / National">Long Distance / National</Option>
         </Select>
       </Form.Item>
 
@@ -144,12 +148,11 @@ const VehicleInformationFormTemplate = ({ form, onSubmit }) => {
       >
         <Select
           placeholder="Loading"
-          onChange={onVehicleTypeChange}
           allowClear
         >
-          <Option value="male">male</Option>
-          <Option value="female">female</Option>
-          <Option value="other">other</Option>
+          <Option value="Heavy Load">Heavy Load</Option>
+          <Option value="Moderate Load">Moderate Load</Option>
+          <Option value="Rated Load">Rated Load</Option>
         </Select>
       </Form.Item>
 
@@ -164,12 +167,14 @@ const VehicleInformationFormTemplate = ({ form, onSubmit }) => {
       >
         <Select
           placeholder="Tyre Size"
-          onChange={onVehicleTypeChange}
           allowClear
         >
-          <Option value="male">male</Option>
-          <Option value="female">female</Option>
-          <Option value="other">other</Option>
+          <Option value="10.00 R 20">10.00 R 20</Option>
+          <Option value="11 R 22.5">11 R 22.5</Option>
+          <Option value="11.00 R 20">11.00 R 20</Option>
+          <Option value="12.00-20">12.00-20</Option>
+          <Option value="12.00-24">12.00-24</Option>
+          <Option value="215/75 R 17.5">215/75 R 17.5</Option>
         </Select>
       </Form.Item>
 

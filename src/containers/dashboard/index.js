@@ -1,25 +1,31 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import Dashboard from '../../components/dashboard/Dashboard';
+import {
+  Link,
+} from 'react-router-dom';
 
-const DashboardPage = () => {
-  const history = useHistory();
-  const viewPreviousJobs = event => {
-    event.preventDefault();
-    history.push('/previous-jobs');
-  };
-
-  const addNewJob = event => {
-    event.preventDefault();
-    history.push('/add-new-job');
-  };
-
-  return (
-    <Dashboard
-      addNewJob={addNewJob}
-      viewPreviousJobs={viewPreviousJobs}
-    />
-  );
-};
+const DashboardPage = () => (
+  <div className="dashboard container">
+    <h1 className="main-title">
+      Dashboard
+    </h1>
+    <div className="dashboard-nav">
+      <ul>
+        <li>
+          <Link
+            className="icon-car"
+            to="/add-new-job"
+          >
+            Add a new Job
+          </Link>
+        </li>
+        <li>
+          <Link className="icon-search" to="/previous-jobs">
+            View previous jobs
+          </Link>
+        </li>
+      </ul>
+    </div>
+  </div>
+);
 
 export default DashboardPage;

@@ -53,7 +53,15 @@ const routes = [
         path: '/add-new-job/review',
         component: Review,
       },
+      {
+        path: '/add-new-job',
+        component: VehicleInformation,
+      },
     ],
+  },
+  {
+    path: '/',
+    component: DashboardPage,
   },
 ];
 

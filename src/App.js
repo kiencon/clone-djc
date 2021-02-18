@@ -1,26 +1,32 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
 } from 'react-router-dom';
 import Login from './containers/login/index';
 import PrivateRoute from './router/PrivateRoute';
-import Dashboard from './containers/dashboard';
+import AppRouter from './router/index';
+import Header from './components/header/Header';
 
-export default function AuthExample() {
-  return (
+const App = () => (
+  <>
     <Router>
+      <Header />
       <Switch>
         <Route path="/login">
           <Login />
         </Route>
         <PrivateRoute path="/">
-          <Dashboard />
+          <div className="main container">
+            <section className="wraper-app">
+              <AppRouter />
+            </section>
+          </div>
         </PrivateRoute>
       </Switch>
     </Router>
-  );
-}
+  </>
+);
+
+export default App;

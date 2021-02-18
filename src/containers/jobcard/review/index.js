@@ -1,6 +1,6 @@
 import { Form, Row, Col } from 'antd';
 import React, { useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { FORM_TYPE } from '../../../config/const';
 import ReviewInfoFormTemplate from './formTemplate/index';
 import {
@@ -36,9 +36,6 @@ const ReviewInfo = () => {
       serviceRecommendation: selectServiceRecommendation(state),
     }),
   );
-
-  // eslint-disable-next-line no-unused-vars
-  const dispatch = useDispatch();
 
   const [form] = Form.useForm();
 
@@ -92,8 +89,8 @@ const ReviewInfo = () => {
             <h2>Driver information</h2>
             <ul>
               <li><p>{driverAndOwnerInfo.driverName}</p></li>
-              <li><p>{vehicleInformation.driverContactNumber}</p></li>
-              <li><p>{vehicleInformation.fleetManagerEmailAddress}</p></li>
+              <li><p>{driverAndOwnerInfo.driverContactNumber}</p></li>
+              <li><p>{driverAndOwnerInfo.fleetManagerEmailAddress}</p></li>
             </ul>
           </Col>
           <Col span={24}>

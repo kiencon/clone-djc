@@ -1,24 +1,23 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import Logo from '../../assets/images/logo.png';
 import './Header.scss';
 
-const Header = () => {
-  const history = useHistory();
-  const navigateToDashboard = () => history.push('/dashboard');
-  return (
-    <header className="header">
-      <div className="container wraper-header">
-        <div
-          onClick={() => navigateToDashboard()}
+const Header = () => (
+  <header className="header">
+    <div className="container wraper-header">
+      <Route>
+        <Link
           className="logo"
           aria-hidden="true"
+          to="/"
         >
           <img src={Logo} alt="Logo" />
-        </div>
-      </div>
-    </header>
-  );
-};
+        </Link>
+      </Route>
+
+    </div>
+  </header>
+);
 
 export default Header;

@@ -1,6 +1,8 @@
+/* eslint-disable no-alert */
 import { Form, Row, Col } from 'antd';
 import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { FORM_TYPE } from '../../../config/const';
 import ReviewInfoFormTemplate from './formTemplate/index';
 import {
@@ -17,6 +19,8 @@ import {
   toVehicleInspectionArray,
   toTyreInspectionArray,
 } from '../utils/inspectionHelper';
+
+import apiDB from '../../../database';
 
 const ReviewInfo = () => {
   const {
@@ -37,15 +41,26 @@ const ReviewInfo = () => {
     }),
   );
 
+  const history = useHistory();
   const [form] = Form.useForm();
 
   const onAdd = () => {
-    console.log('vehicleInformation', vehicleInformation);
-    console.log('driverAndOwnerInfo', driverAndOwnerInfo);
-    console.log('tyreInspection', tyreInspection);
-    console.log('vehicleInspection', vehicleInspection);
-    console.log('jobWorksheet', jobWorksheet);
-    console.log('serviceRecommendation', serviceRecommendation);
+    const doc = {
+      vehicleInformation,
+      driverAndOwnerInfo,
+      tyreInspection,
+      vehicleInspection,
+      jobWorksheet,
+      serviceRecommendation,
+    };
+    apiDB.saveJob(doc).then(res => {
+      console.log(res);
+      alert('save job successfully');
+      history.push('/');
+    }).catch(err => {
+      console.log(err);
+      alert('save job fail');
+    });
   };
 
   const formRef = useRef({

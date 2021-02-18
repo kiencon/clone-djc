@@ -25,6 +25,7 @@ const JobCardPage = ({ routes }) => {
     name: 'review',
     path: '/add-new-job/review',
   }];
+
   return (
     <div className="jobcard">
       <div className="jobcard-nav">

@@ -8,9 +8,8 @@ import { loginAPI } from './api';
 
 export function* loginSaga({ payload }) {
   try {
-    // eslint-disable-next-line no-console
-    console.log('saga LOGIN_REQUEST', payload);
-    const response = yield loginAPI(payload);
+    const { username, password } = payload.values;
+    const response = yield loginAPI(username, password);
     yield put(loginSuccess(response));
   } catch (error) {
     yield put(loginError(error));

@@ -8,13 +8,13 @@ import {
 
 export const initialState = {
   loggedInformation: {},
-  effect: 0,
 };
 
 const init = () => {
   const initValue = immutable.fromJS({
     loggedInformation: undefined,
     isLoading: undefined,
+    effect: 0,
   });
 
   return initValue
@@ -38,8 +38,16 @@ const loggedInformationReducer = (state = init(), action) => {
         }));
     }
 
-    case LOGIN_ERROR:
-      return state.set('isLoading', false);
+    case LOGIN_ERROR: {
+      return state
+        .set('isLoading', false)
+        .update('loggedInformation', loggedInfo => ({
+          ...loggedInfo,
+          isFailLogged: true,
+          isLogged: undefined,
+          effect: loggedInfo.effect + 1,
+        }));
+    }
 
     case LOGIN_SUCCESS: {
       console.log('reducer LOGIN_SUCCESS');
@@ -49,6 +57,8 @@ const loggedInformationReducer = (state = init(), action) => {
         .update('loggedInformation', loggedInfo => ({
           ...loggedInfo,
           isLogged: true,
+          isFailLogged: undefined,
+          effect: loggedInfo.effect + 1,
         }));
     }
 

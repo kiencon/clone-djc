@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Form } from 'antd';
 import React, {
   useRef, useEffect,
@@ -29,8 +28,6 @@ const Login = () => {
     }),
   );
 
-  // handle reload page when user had logged
-  // using useEffect with an empty array for run one time
   useEffect(() => {
     if (localStorage.getItem('isLoggedD2Tyres')) {
       dispatch(handleReloadPage());
@@ -41,7 +38,14 @@ const Login = () => {
     if (loggedInformation.isLogged) {
       history.replace(from);
     }
-  }, [from, history, loggedInformation.isLogged]);
+  }, [from, history, loggedInformation.isLogged, loggedInformation.effect]);
+
+  useEffect(() => {
+    if (loggedInformation.isFailLogged) {
+      // eslint-disable-next-line no-alert
+      alert('username or password is incorect');
+    }
+  }, [loggedInformation.isFailLogged, loggedInformation.effect]);
 
   const [form] = Form.useForm();
 

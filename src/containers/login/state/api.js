@@ -1,5 +1,8 @@
-export const loginAPI = () => Promise.resolve({
-  data: {
-    statusCode: 200,
-  },
-});
+import apiDB from '../../../database';
+
+export const loginAPI = (username, password) => {
+  if (apiDB.login(username, password)) {
+    return;
+  }
+  throw Error('User name or password is incorect');
+};

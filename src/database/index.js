@@ -15,7 +15,7 @@ apiDB.login = (username, password) => {
 apiDB.saveJob = doc => db.post({
   ...doc,
   type: 'jobsheet',
-  _id: `${doc.driverAndOwnerInfo.companyName}-${new Date().getTime()}`,
+  _id: `${doc.driverAndOwnerInfo.id}`,
   createdAt: new Date(),
 });
 
@@ -23,9 +23,6 @@ apiDB.listJob = () => db.allDocs({
   include_docs: true,
 });
 
-apiDB.get = id => db.query({
-  type: 'jobsheet',
-  _id: id,
-});
+apiDB.get = id => db.get(id);
 
 export default apiDB;

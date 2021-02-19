@@ -22,8 +22,10 @@ const driverAndOwnerInfoReducer = (state = init(), action) => {
   switch (action.type) {
     case CREATE_DRIVER_OWNER_INFORMATION_REQUEST: {
       const { values } = action.payload;
+      const id = `${values.companyName}-${new Date().getTime()}`;
       return state.set('driverAndOwnerInfo', {
         ...values,
+        id,
       });
     }
 

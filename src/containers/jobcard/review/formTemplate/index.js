@@ -1,18 +1,22 @@
 import React from 'react';
 import { Button, Form } from 'antd';
 
-const ReviewInfoFormTemplate = ({ form, onSubmit }) => (
+const ReviewInfoFormTemplate = ({ form, onSubmit, isReview }) => (
   <Form
     name="review"
     form={form}
     onFinish={onSubmit}
   >
     <div className="wrapper-btn">
-      <Form.Item>
-        <Button className="btn" htmlType="submit">
-          Save Job
-        </Button>
-      </Form.Item>
+      {
+        isReview ? null : (
+          <Form.Item>
+            <Button className="btn" htmlType="submit">
+              Save Job
+            </Button>
+          </Form.Item>
+        )
+      }
     </div>
   </Form>
 );

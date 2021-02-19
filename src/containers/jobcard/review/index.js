@@ -1,8 +1,8 @@
 /* eslint-disable no-alert */
 import { Form, Row, Col } from 'antd';
-import React, { useRef } from 'react';
-import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import React, { useRef, useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 import { FORM_TYPE } from '../../../config/const';
 import ReviewInfoFormTemplate from './formTemplate/index';
 import {
@@ -19,6 +19,12 @@ import {
   toVehicleInspectionArray,
   toTyreInspectionArray,
 } from '../utils/inspectionHelper';
+import { createVehicleInformation } from '../vehicleInformation/state/action';
+import { createDriverAndOwnerInfo } from '../driverAndOwnerInfo/state/action';
+import { createVehicleInspection } from '../vehicleInspection/state/action';
+import { createTyreInspection } from '../tyreInspection/state/action';
+import { createServiceRecommendation } from '../serviceRecommendation/state/action';
+import { createJobWorksheet } from '../jobWorksheet/state/action';
 
 import apiDB from '../../../database';
 
@@ -40,6 +46,24 @@ const ReviewInfo = () => {
       serviceRecommendation: selectServiceRecommendation(state),
     }),
   );
+
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const [isReview, setIsReview] = useState(false);
+
+  useEffect(() => {
+    if (id) {
+      apiDB.get(id).then(doc => {
+        dispatch(createVehicleInformation({ values: doc.vehicleInformation }));
+        dispatch(createDriverAndOwnerInfo({ values: doc.driverAndOwnerInfo }));
+        dispatch(createVehicleInspection({ values: doc.vehicleInspection }));
+        dispatch(createTyreInspection({ values: doc.tyreInspection }));
+        dispatch(createServiceRecommendation({ values: doc.serviceRecommendation }));
+        dispatch(createJobWorksheet({ values: doc.jobWorksheet }));
+        setIsReview(true);
+      });
+    }
+  }, [dispatch, id]);
 
   const history = useHistory();
   const [form] = Form.useForm();
@@ -174,6 +198,7 @@ const ReviewInfo = () => {
           <ReviewInfoFormTemplate
             form={form}
             onSubmit={formRef.current.onSubmit}
+            isReview={isReview}
           />
         </div>
       </div>

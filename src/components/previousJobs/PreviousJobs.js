@@ -1,9 +1,14 @@
-/* eslint-disable no-unused-vars */
 import { Space, Table } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Pagination from './Pagination';
 import apiDB from '../../database';
+
+const Pagination = () => (
+  <div className="pagination">
+    <Link to="/" className="btn">Previous</Link>
+    <Link to="/" className="btn">Next</Link>
+  </div>
+);
 
 const PreviousJobs = () => {
   const columns = [
@@ -65,44 +70,6 @@ const PreviousJobs = () => {
       })
       .catch(err => console.log(err));
   }, []);
-
-  // const data = [{
-  //   key: '3',
-  //   id: 'ABC123_1587579898',
-  //   date: new Date().toString(),
-  //   companyName: 'ALICE TRANSPORT COMPANY',
-  //   vehicleRegistrationNumber: 'ABC123',
-  //   driver: 'Driver 001',
-  // }, {
-  //   key: '4',
-  //   id: 'ABC124_1587579898',
-  //   date: new Date(),
-  //   companyName: 'ALICE TRANSPORT COMPANY',
-  //   vehicleRegistrationNumber: 'ABC123',
-  //   driver: 'Driver 001',
-  // }, {
-  //   key: '5',
-  //   id: 'ABC125_1587579898',
-  //   date: new Date().toString(),
-  //   companyName: 'ALICE TRANSPORT COMPANY',
-  //   vehicleRegistrationNumber: 'ABC123',
-  //   driver: 'Driver 001',
-  // }, {
-  //   key: '6',
-  //   id: 'ABC126_1587579898',
-  //   date: new Date().toString(),
-  //   companyName: 'ALICE TRANSPORT COMPANY',
-  //   vehicleRegistrationNumber: 'ABC123',
-  //   driver: 'Driver 006',
-  // }, {
-  //   key: '7',
-  //   id: 'ABC127_1587579898',
-  //   date: new Date().toString(),
-  //   companyName: 'ALICE TRANSPORT COMPANY',
-  //   vehicleRegistrationNumber: 'ABC123',
-  //   driver: 'Driver 007',
-  // }];
-
   return (
     <>
       <div className="previousJobs">

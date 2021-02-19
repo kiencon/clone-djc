@@ -50,7 +50,7 @@ const routes = [
         component: ServiceRecommendation,
       },
       {
-        path: '/add-new-job/review',
+        path: '/add-new-job/review/:id',
         component: Review,
       },
       {

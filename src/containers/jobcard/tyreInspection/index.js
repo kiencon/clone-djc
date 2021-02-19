@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { FORM_TYPE } from '../../../config/const';
 import TyreInspectionTemplate from './formTemplate/index';
-import { createVehicleInspection } from './state/action';
+import { createTyreInspection } from './state/action';
 
 const DriverAndOwnerInfo = () => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const DriverAndOwnerInfo = () => {
   const [form] = Form.useForm();
 
   const onAdd = useCallback(values => {
-    dispatch(createVehicleInspection({
+    dispatch(createTyreInspection({
       values,
     }));
     history.push('/add-new-job/job-workSheet');

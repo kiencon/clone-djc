@@ -7,12 +7,12 @@ import {
 import { loginAPI } from './api';
 
 export function* loginSaga({ payload }) {
-  try {
-    const { username, password } = payload.values;
-    const response = yield loginAPI(username, password);
+  const { username, password } = payload.values;
+  const response = yield loginAPI(username, password);
+  if (response) {
     yield put(loginSuccess(response));
-  } catch (error) {
-    yield put(loginError(error));
+  } else {
+    yield put(loginError(response));
   }
 }
 

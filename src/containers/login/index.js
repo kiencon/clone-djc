@@ -1,17 +1,14 @@
 import { Form } from 'antd';
-import React, {
-  useRef, useEffect,
-} from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   useHistory,
   useLocation,
 } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { FORM_TYPE } from '../../config/const';
+import { openNotification } from '../utils';
 import LoginFormTemplate from './formTemplate/index';
-import {
-  login, handleReloadPage,
-} from './state/action';
+import { handleReloadPage, login } from './state/action';
 import { selectLoggedInformation } from './state/selector';
 
 const Login = () => {
@@ -36,14 +33,14 @@ const Login = () => {
 
   useEffect(() => {
     if (loggedInformation.isLogged) {
+      openNotification('loggin successfully');
       history.replace(from);
     }
   }, [from, history, loggedInformation.isLogged, loggedInformation.effect]);
 
   useEffect(() => {
     if (loggedInformation.isFailLogged) {
-      // eslint-disable-next-line no-alert
-      alert('username or password is incorect');
+      openNotification('username or password is incorect');
     }
   }, [loggedInformation.isFailLogged, loggedInformation.effect]);
 

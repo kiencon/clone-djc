@@ -1,32 +1,29 @@
-/* eslint-disable no-alert */
-import { Form, Row, Col } from 'antd';
-import React, { useRef, useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { Col, Form, Row } from 'antd';
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { FORM_TYPE } from '../../../config/const';
-import ReviewInfoFormTemplate from './formTemplate/index';
+import apiDB from '../../../database';
+import { openNotification } from '../../utils';
+import { createDriverAndOwnerInfo } from '../driverAndOwnerInfo/state/action';
+import { createJobWorksheet } from '../jobWorksheet/state/action';
+import { createServiceRecommendation } from '../serviceRecommendation/state/action';
+import { createTyreInspection } from '../tyreInspection/state/action';
 import {
-  selectVehicleInformation,
-  selectDriverAndOwnerInfo,
-  selectVehicleInspection,
-  selectTyreInspection,
-  selectJobWorksheet,
-  selectServiceRecommendation,
-} from './state/selector';
-
-import InspectionReview from './formTemplate/vehiclePartsInspection';
-import {
-  toVehicleInspectionArray,
-  toTyreInspectionArray,
+  toTyreInspectionArray, toVehicleInspectionArray,
 } from '../utils/inspectionHelper';
 import { createVehicleInformation } from '../vehicleInformation/state/action';
-import { createDriverAndOwnerInfo } from '../driverAndOwnerInfo/state/action';
 import { createVehicleInspection } from '../vehicleInspection/state/action';
-import { createTyreInspection } from '../tyreInspection/state/action';
-import { createServiceRecommendation } from '../serviceRecommendation/state/action';
-import { createJobWorksheet } from '../jobWorksheet/state/action';
+import ReviewInfoFormTemplate from './formTemplate/index';
+import InspectionReview from './formTemplate/vehiclePartsInspection';
+import {
+  selectDriverAndOwnerInfo,
 
-import apiDB from '../../../database';
+  selectJobWorksheet,
+  selectServiceRecommendation, selectTyreInspection, selectVehicleInformation,
+
+  selectVehicleInspection,
+} from './state/selector';
 
 const ReviewInfo = () => {
   const {
@@ -77,13 +74,11 @@ const ReviewInfo = () => {
       jobWorksheet,
       serviceRecommendation,
     };
-    apiDB.saveJob(doc).then(res => {
-      console.log(res);
-      alert('save job successfully');
+    apiDB.saveJob(doc).then(() => {
+      openNotification('Save job successfully');
       history.push('/');
-    }).catch(err => {
-      console.log(err);
-      alert('save job fail');
+    }).catch(() => {
+      openNotification('Save job fail');
     });
   };
 

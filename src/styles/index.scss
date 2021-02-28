@@ -42,3 +42,30 @@ h1 {
     justify-content: center;
   }
 }
+
+.icon-view {
+  background: url('../assets/images/view-icon.png') no-repeat 50%;
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.icon-edit {
+  background: url('../assets/images/edit-icon-blue.png') no-repeat 50%;
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.icon-remove {
+  background: url('../assets/images/remove-icon.png') no-repeat 50%;
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.clear-btn-default {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}

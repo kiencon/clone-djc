@@ -18,10 +18,10 @@ import ReviewInfoFormTemplate from './formTemplate/index';
 import InspectionReview from './formTemplate/vehiclePartsInspection';
 import {
   selectDriverAndOwnerInfo,
-
   selectJobWorksheet,
-  selectServiceRecommendation, selectTyreInspection, selectVehicleInformation,
-
+  selectServiceRecommendation,
+  selectTyreInspection,
+  selectVehicleInformation,
   selectVehicleInspection,
 } from './state/selector';
 

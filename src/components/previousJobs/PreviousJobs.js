@@ -65,7 +65,7 @@ const PreviousJobs = () => {
           driver: doc.driverAndOwnerInfo.driverName,
           createdAt: doc.createdAt,
         }));
-        console.log(docs);
+        console.log(docs.length);
         setData(docs);
       })
       .catch(err => console.log(err));

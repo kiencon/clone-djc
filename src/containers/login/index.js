@@ -1,4 +1,4 @@
-import { Form } from 'antd';
+import { Form, Spin } from 'antd';
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -6,10 +6,11 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { FORM_TYPE } from '../../config/const';
+import db from '../../database';
 import { openNotification } from '../utils';
 import LoginFormTemplate from './formTemplate/index';
 import { handleReloadPage, login } from './state/action';
-import { selectLoggedInformation } from './state/selector';
+import { selectLoggedInformation, selectLoggedInformationReducer } from './state/selector';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -19,9 +20,11 @@ const Login = () => {
 
   const {
     loggedInformation,
+    isLoading,
   } = useSelector(
     state => ({
       loggedInformation: selectLoggedInformation(state),
+      isLoading: selectLoggedInformationReducer(state).get('isLoading'),
     }),
   );
 
@@ -34,6 +37,7 @@ const Login = () => {
   useEffect(() => {
     if (loggedInformation.isLogged) {
       openNotification('loggin successfully');
+      db.startSyncFirstTime(true);
       history.replace(from);
     }
   }, [from, history, loggedInformation.isLogged, loggedInformation.effect]);
@@ -59,15 +63,17 @@ const Login = () => {
 
   return (
     <>
-      <div className="login container">
-        <h1>Login</h1>
-        <div className="form">
-          <LoginFormTemplate
-            form={form}
-            onSubmit={formRef.current.onSubmit}
-          />
+      <Spin spinning={isLoading} tip="Loading...">
+        <div className="login container">
+          <h1>Login</h1>
+          <div className="form">
+            <LoginFormTemplate
+              form={form}
+              onSubmit={formRef.current.onSubmit}
+            />
+          </div>
         </div>
-      </div>
+      </Spin>
     </>
   );
 };

@@ -2,15 +2,18 @@ import { Space, Table } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { openNotification } from '../utils';
+import {
+  DELETE_STATUS,
+} from '../../config/const';
 import apiDB from '../../database';
+import { openNotification } from '../utils';
+import {
+  removeJobRequest,
+} from './state/action';
 import {
   selectPutJobsheetInformation,
   selectPutJobsheetInformationReducer,
 } from './state/selector';
-import {
-  removeJobRequest,
-} from './state/action';
 
 const Pagination = () => (
   <div className="pagination">
@@ -60,11 +63,12 @@ const PreviousJobsPage = () => {
   };
 
   useEffect(() => {
-    if (putJobsheetInformation.isSuccessPut) {
+    console.log('state change');
+    if (putJobsheetInformation.status === DELETE_STATUS.SUCCESS) {
       openNotification('Remove job successfully');
       getListJob();
     }
-  }, [putJobsheetInformation.isSuccessPut, isEffect]);
+  }, [putJobsheetInformation.status, isEffect]);
 
   const columns = [
     {

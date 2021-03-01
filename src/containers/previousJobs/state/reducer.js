@@ -1,8 +1,11 @@
 import immutable from 'immutable';
 import {
+  DELETE_STATUS,
+} from '../../../config/const';
+import {
+  REMOVE_JOB_ERROR,
   REMOVE_JOB_REQUEST,
   REMOVE_JOB_SUCCESS,
-  REMOVE_JOB_ERROR,
 } from './action';
 
 export const initialState = {
@@ -33,7 +36,7 @@ const putJobsheetInformationReducer = (state = init(), action) => {
         .set('isLoading', false)
         .update('putJobsheetInformation', putInfo => ({
           ...putInfo,
-          isFailPut: true,
+          status: DELETE_STATUS.FAIL,
         }))
         .update('effect', effect => effect + 1);
     }
@@ -43,7 +46,7 @@ const putJobsheetInformationReducer = (state = init(), action) => {
         .set('isLoading', false)
         .update('putJobsheetInformation', putInfo => ({
           ...putInfo,
-          isSuccessPut: true,
+          status: DELETE_STATUS.SUCCESS,
         }))
         .update('effect', effect => effect + 1);
     }

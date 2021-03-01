@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './App';
-// import db from './database';
+import db from './database';
 // import reportWebVitals from './reportWebVitals';
 import store from './store';
 import './styles/index.scss';
 
-// db.syncToServer();
+db.startSyncFirstTime();
 
 ReactDOM.render(
   <React.StrictMode>

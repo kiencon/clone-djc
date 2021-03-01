@@ -4,6 +4,7 @@ import mockData from './mockData';
 class Db {
   constructor() {
     this.dbName = 'cvzone';
+    this.initLocalDB(this.dbName);
     this.remoteURL = `https://1f8f1b10-c761-4916-b583-41bd83e6a4ed-bluemix:9f0a3c639cf982ec03bf58fcf054f47e437d3485e209de080d7842b0006029fa@1f8f1b10-c761-4916-b583-41bd83e6a4ed-bluemix.cloudantnosqldb.appdomain.cloud/${this.dbName}`;
   }
 
@@ -42,8 +43,6 @@ class Db {
   }
 
   startSyncFirstTime(keepAlive) {
-    this.initLocalDB(this.dbName);
-
     return this.db.sync(this.remoteURL, {
       live: keepAlive,
       retry: true,
@@ -54,6 +53,7 @@ class Db {
   initLocalDB(database) {
     this.db = new PouchDB(database, {
       skip_setup: true,
+      auto_compaction: true,
     });
   }
 }

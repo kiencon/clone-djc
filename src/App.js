@@ -8,9 +8,6 @@ import Login from './containers/login/index';
 import PrivateRoute from './router/PrivateRoute';
 import AppRouter from './router/index';
 import Header from './components/header/Header';
-// import apiDB from './database';
-
-// apiDB.mockData();
 
 const App = () => (
   <>

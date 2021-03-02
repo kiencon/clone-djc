@@ -1,6 +1,6 @@
 import immutable from 'immutable';
 import {
-  CREATE_DRIVER_OWNER_INFORMATION_REQUEST,
+  CLEAR_DRIVER_OWNER_INFORMATION, CREATE_DRIVER_OWNER_INFORMATION_REQUEST,
 } from './action';
 
 const initialState = {
@@ -27,6 +27,10 @@ const driverAndOwnerInfoReducer = (state = init(), action) => {
         ...values,
         id,
       });
+    }
+
+    case CLEAR_DRIVER_OWNER_INFORMATION: {
+      return state.set('driverAndOwnerInfo', { ...initialState });
     }
 
     default:

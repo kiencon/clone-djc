@@ -1,5 +1,6 @@
 import immutable from 'immutable';
 import {
+  CLEAR_TYRE_INPSECTION_STATE,
   CREATE_TYRE_INSPECTION_REQUEST,
 } from './action';
 
@@ -25,6 +26,10 @@ const tyreInspectionReducer = (state = init(), action) => {
       return state.set('tyreInspection', {
         ...values,
       });
+    }
+
+    case CLEAR_TYRE_INPSECTION_STATE: {
+      return state.set('tyreInspection', { ...initialState });
     }
 
     default:

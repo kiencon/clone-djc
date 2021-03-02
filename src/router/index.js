@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
 import DashboardPage from '../containers/dashboard/index';
-import JobWorkSheet from '../containers/jobcard/jobWorksheet';
 import DriverAndOwnerInfo from '../containers/jobcard/driverAndOwnerInfo';
 import JobCardPage from '../containers/jobcard/index';
+import JobWorkSheet from '../containers/jobcard/jobWorksheet';
 import Review from '../containers/jobcard/review';
 import ServiceRecommendation from '../containers/jobcard/serviceRecommendation';
 import TyreInspection from '../containers/jobcard/tyreInspection';
@@ -50,7 +50,7 @@ const routes = [
         component: ServiceRecommendation,
       },
       {
-        path: '/add-new-job/review/:id',
+        path: '/add-new-job/review',
         component: Review,
       },
       {

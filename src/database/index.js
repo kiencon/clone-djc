@@ -31,8 +31,12 @@ class Db {
     return this.db.remove(doc);
   }
 
-  update(doc) {
-    return this.db.update(doc);
+  async update(doc) {
+    return this.db.put({
+      type: 'jobsheet',
+      createdAt: new Date(),
+      ...doc,
+    });
   }
 
   async mockData() {

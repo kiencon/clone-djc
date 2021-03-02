@@ -1,5 +1,6 @@
 import immutable from 'immutable';
 import {
+  CLEAR_VEHICLE_INPSECTION_STATE,
   CREATE_VEHICLE_INSPECTION_REQUEST,
 } from './action';
 
@@ -25,6 +26,10 @@ const vehicleInspectionReducer = (state = init(), action) => {
       return state.set('vehicleInspection', {
         ...values,
       });
+    }
+
+    case CLEAR_VEHICLE_INPSECTION_STATE: {
+      return state.set('vehicleInspection', { ...initialState });
     }
 
     default:

@@ -1,13 +1,12 @@
 import immutable from 'immutable';
 import {
-  CREATE_VEHICLE_INFORMATION_ERROR,
+  CLEAR_VEHICLE_INFORMATION_STATE, CREATE_VEHICLE_INFORMATION_ERROR,
   CREATE_VEHICLE_INFORMATION_REQUEST,
   CREATE_VEHICLE_INFORMATION_SUCCESS,
 } from './action';
 
 export const initialState = {
   vehicleInformation: {},
-  effect: 0,
 };
 
 const init = () => {
@@ -31,12 +30,14 @@ const vehicleInformationReducer = (state = init(), action) => {
     }
 
     case CREATE_VEHICLE_INFORMATION_ERROR:
-      return state.set('isLoading', false);
+      return state;
 
     case CREATE_VEHICLE_INFORMATION_SUCCESS: {
-      console.log('reducer CREATE_VEHICLE_INFORMATION_SUCCESS');
-      console.log('action', action);
       return state;
+    }
+
+    case CLEAR_VEHICLE_INFORMATION_STATE: {
+      return state.set('vehicleInformation', { ...initialState });
     }
 
     default:

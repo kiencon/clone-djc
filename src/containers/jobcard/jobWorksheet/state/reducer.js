@@ -1,6 +1,6 @@
 import immutable from 'immutable';
 import {
-  CREATE_JOB_WORKSHEET_REQUEST,
+  CLEAR_JOB_WORKSHEET_STATE, CREATE_JOB_WORKSHEET_REQUEST,
 } from './action';
 
 const initialState = {
@@ -25,6 +25,10 @@ const jobWorksheetReducer = (state = init(), action) => {
       return state.set('jobWorksheet', {
         ...values,
       });
+    }
+
+    case CLEAR_JOB_WORKSHEET_STATE: {
+      return state.set('jobWorksheet', { ...initialState });
     }
 
     default:

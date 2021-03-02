@@ -1,6 +1,6 @@
-export const selectDriverAndOwnerInfoReducer = state => state.driverAndOwnerInfo;
-export const selectDriverAndOwnerInfo = state => (
-  selectDriverAndOwnerInfoReducer(state)
-    ? selectDriverAndOwnerInfoReducer(state).get('driverAndOwnerInfo')
+export const selectServiceRecommendationReducer = state => state.serviceRecommendation;
+export const selectServiceRecommendation = state => (
+  selectServiceRecommendationReducer(state)
+    ? selectServiceRecommendationReducer(state).get('serviceRecommendation')
     : {}
 );

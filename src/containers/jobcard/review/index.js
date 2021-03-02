@@ -1,19 +1,18 @@
 import { Col, Form, Row } from 'antd';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { FORM_TYPE } from '../../../config/const';
 import apiDB from '../../../database';
 import { openNotification } from '../../utils';
-import { createDriverAndOwnerInfo } from '../driverAndOwnerInfo/state/action';
-import { createJobWorksheet } from '../jobWorksheet/state/action';
-import { createServiceRecommendation } from '../serviceRecommendation/state/action';
-import { createTyreInspection } from '../tyreInspection/state/action';
+import {
+  resetJobcardForm,
+} from '../state/action';
+import { selectJobcard } from '../state/selector';
+import { removeJobcardFromStore } from '../utils';
 import {
   toTyreInspectionArray, toVehicleInspectionArray,
 } from '../utils/inspectionHelper';
-import { createVehicleInformation } from '../vehicleInformation/state/action';
-import { createVehicleInspection } from '../vehicleInspection/state/action';
 import ReviewInfoFormTemplate from './formTemplate/index';
 import InspectionReview from './formTemplate/vehiclePartsInspection';
 import {
@@ -33,6 +32,7 @@ const ReviewInfo = () => {
     tyreInspection,
     jobWorksheet,
     serviceRecommendation,
+    formInformation,
   } = useSelector(
     state => ({
       vehicleInformation: selectVehicleInformation(state),
@@ -41,26 +41,11 @@ const ReviewInfo = () => {
       tyreInspection: selectTyreInspection(state),
       jobWorksheet: selectJobWorksheet(state),
       serviceRecommendation: selectServiceRecommendation(state),
+      formInformation: selectJobcard(state),
     }),
   );
 
   const dispatch = useDispatch();
-  const { id } = useParams();
-  const [isReview, setIsReview] = useState(false);
-
-  useEffect(() => {
-    if (id) {
-      apiDB.get(id).then(doc => {
-        dispatch(createVehicleInformation({ values: doc.vehicleInformation }));
-        dispatch(createDriverAndOwnerInfo({ values: doc.driverAndOwnerInfo }));
-        dispatch(createVehicleInspection({ values: doc.vehicleInspection }));
-        dispatch(createTyreInspection({ values: doc.tyreInspection }));
-        dispatch(createServiceRecommendation({ values: doc.serviceRecommendation }));
-        dispatch(createJobWorksheet({ values: doc.jobWorksheet }));
-        setIsReview(true);
-      });
-    }
-  }, [dispatch, id]);
 
   const history = useHistory();
   const [form] = Form.useForm();
@@ -76,16 +61,63 @@ const ReviewInfo = () => {
     };
     apiDB.saveJob(doc).then(() => {
       openNotification('Save job successfully');
+      dispatch(resetJobcardForm());
+      removeJobcardFromStore(dispatch);
       history.push('/');
     }).catch(() => {
       openNotification('Save job fail');
     });
   };
 
+  const onEdit = useCallback(() => {
+    const doc = {
+      vehicleInformation,
+      driverAndOwnerInfo,
+      tyreInspection,
+      vehicleInspection,
+      jobWorksheet,
+      serviceRecommendation,
+      ...formInformation.identifiedJob,
+    };
+    apiDB.update(doc).then(() => {
+      openNotification('Edit job successfully');
+      dispatch(resetJobcardForm());
+      removeJobcardFromStore(dispatch);
+      history.push('/');
+    }).catch(() => {
+      openNotification('Edit job fail');
+    });
+  }, [
+    dispatch,
+    driverAndOwnerInfo,
+    formInformation.identifiedJob,
+    history,
+    jobWorksheet,
+    serviceRecommendation,
+    tyreInspection,
+    vehicleInformation,
+    vehicleInspection,
+  ]);
+
   const formRef = useRef({
     formType: FORM_TYPE.ADD,
     onSubmit: onAdd,
   });
+
+  useEffect(() => {
+    if (formInformation.formType === FORM_TYPE.REVIEW) {
+      formRef.current = {
+        formType: FORM_TYPE.REVIEW,
+        onSubmit: undefined,
+      };
+    }
+    if (formInformation.formType === FORM_TYPE.EDIT) {
+      formRef.current = {
+        formType: FORM_TYPE.EDIT,
+        onSubmit: onEdit,
+      };
+    }
+  }, [form, formInformation.formType, onEdit]);
 
   return (
     <>
@@ -193,7 +225,7 @@ const ReviewInfo = () => {
           <ReviewInfoFormTemplate
             form={form}
             onSubmit={formRef.current.onSubmit}
-            isReview={isReview}
+            isReview={formRef.current.formType === FORM_TYPE.REVIEW}
           />
         </div>
       </div>

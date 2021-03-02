@@ -3,29 +3,29 @@ import {
   DELETE_STATUS,
 } from '../../../config/const';
 import {
-  REMOVE_JOB_ERROR,
+  CLEAR_JOB_STATE, REMOVE_JOB_ERROR,
   REMOVE_JOB_REQUEST,
   REMOVE_JOB_SUCCESS,
 } from './action';
 
 export const initialState = {
-  putJobsheetInformation: {},
+  removeJobsheetInformation: {},
 };
 
 const init = () => {
   const initValue = immutable.fromJS({
-    putJobsheetInformation: undefined,
+    removeJobsheetInformation: undefined,
     isLoading: undefined,
     effect: 0,
   });
 
   return initValue
-    .set('putJobsheetInformation', {
+    .set('removeJobsheetInformation', {
       ...initialState,
     });
 };
 
-const putJobsheetInformationReducer = (state = init(), action) => {
+const removeJobsheetInformationReducer = (state = init(), action) => {
   switch (action.type) {
     case REMOVE_JOB_REQUEST: {
       return state.set('isLoading', true);
@@ -34,7 +34,7 @@ const putJobsheetInformationReducer = (state = init(), action) => {
     case REMOVE_JOB_ERROR: {
       return state
         .set('isLoading', false)
-        .update('putJobsheetInformation', putInfo => ({
+        .update('removeJobsheetInformation', putInfo => ({
           ...putInfo,
           status: DELETE_STATUS.FAIL,
         }))
@@ -44,11 +44,15 @@ const putJobsheetInformationReducer = (state = init(), action) => {
     case REMOVE_JOB_SUCCESS: {
       return state
         .set('isLoading', false)
-        .update('putJobsheetInformation', putInfo => ({
+        .update('removeJobsheetInformation', putInfo => ({
           ...putInfo,
           status: DELETE_STATUS.SUCCESS,
         }))
         .update('effect', effect => effect + 1);
+    }
+
+    case CLEAR_JOB_STATE: {
+      return state.set('removeJobsheetInformation', { ...initialState }).set('isLoading', false).set('effect', 0);
     }
 
     default:
@@ -56,4 +60,4 @@ const putJobsheetInformationReducer = (state = init(), action) => {
   }
 };
 
-export default putJobsheetInformationReducer;
+export default removeJobsheetInformationReducer;

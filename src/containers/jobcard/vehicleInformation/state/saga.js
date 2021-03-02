@@ -5,10 +5,8 @@ import {
   CREATE_VEHICLE_INFORMATION_REQUEST,
 } from './action';
 
-export function* createVehicleInformationSaga({ payload }) {
+export function* createVehicleInformationSaga() {
   try {
-    // eslint-disable-next-line no-console
-    console.log('saga CREATE_VEHICLE_INFORMATION_REQUEST', payload);
     const response = { code: 200 };
     yield put(createVehicleInformationSuccess(response));
   } catch (error) {

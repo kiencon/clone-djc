@@ -1,6 +1,6 @@
-export const selectPutJobsheetInformationReducer = state => state.putJobsheetInformation;
-export const selectPutJobsheetInformation = state => (
-  selectPutJobsheetInformationReducer(state)
-    ? selectPutJobsheetInformationReducer(state).get('putJobsheetInformation')
+export const selectRemoveJobsheetInformationReducer = state => state.removeJobsheetInformation;
+export const selectRemoveJobsheetInformation = state => (
+  selectRemoveJobsheetInformationReducer(state)
+    ? selectRemoveJobsheetInformationReducer(state).get('removeJobsheetInformation')
     : {}
 );

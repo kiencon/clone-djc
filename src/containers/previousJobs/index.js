@@ -1,19 +1,20 @@
 import { Space, Table } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {
   DELETE_STATUS,
 } from '../../config/const';
 import apiDB from '../../database';
+import { editJobRequest, reviewJobRequest } from '../jobcard/state/action';
 import { openNotification } from '../utils';
 import {
-  removeJobRequest,
+  clearJobState, removeJobRequest,
 } from './state/action';
 import {
-  selectPutJobsheetInformation,
-  selectPutJobsheetInformationReducer,
+  selectRemoveJobsheetInformation,
 } from './state/selector';
+import { pushJobcardToState } from './utils';
 
 const Pagination = () => (
   <div className="pagination">
@@ -24,14 +25,13 @@ const Pagination = () => (
 
 const PreviousJobsPage = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const {
     putJobsheetInformation,
-    isEffect,
   } = useSelector(
     state => ({
-      putJobsheetInformation: selectPutJobsheetInformation(state),
-      isEffect: selectPutJobsheetInformationReducer(state).get('effect'),
+      putJobsheetInformation: selectRemoveJobsheetInformation(state),
     }),
   );
 
@@ -46,10 +46,10 @@ const PreviousJobsPage = () => {
           companyName: doc.driverAndOwnerInfo.companyName,
           vehicleRegistrationNumber: doc.vehicleInformation.vehicleRegistrationNumber,
           driver: doc.driverAndOwnerInfo.driverName,
-          createdAt: doc.createdAt,
           _id: id,
           // eslint-disable-next-line no-underscore-dangle
           _rev: doc._rev,
+          ...doc,
         }));
         setData(docs);
         console.log(docs.length);
@@ -62,13 +62,29 @@ const PreviousJobsPage = () => {
     dispatch(removeJobRequest({ values: doc }));
   };
 
+  const editJob = id => {
+    const doc = data.find(e => e.id === id);
+    console.log(doc);
+    // eslint-disable-next-line no-underscore-dangle
+    dispatch(editJobRequest({ values: { _id: doc._id, _rev: doc._rev } }));
+    pushJobcardToState(dispatch, doc);
+    history.push('/add-new-job/vehicle-info');
+  };
+
+  const reviewJob = id => {
+    const doc = data.find(e => e.id === id);
+    dispatch(reviewJobRequest());
+    pushJobcardToState(dispatch, doc);
+    history.push('/add-new-job/review');
+  };
+
   useEffect(() => {
-    console.log('state change');
     if (putJobsheetInformation.status === DELETE_STATUS.SUCCESS) {
       openNotification('Remove job successfully');
+      dispatch(clearJobState());
       getListJob();
     }
-  }, [putJobsheetInformation.status, isEffect]);
+  }, [dispatch, putJobsheetInformation.status]);
 
   const columns = [
     {
@@ -80,7 +96,7 @@ const PreviousJobsPage = () => {
       title: 'Date',
       key: 'createdAt',
       render: ({ createdAt }) => {
-        const [yy, mm, dd] = createdAt.split('T')[0].split('-');
+        const [yy, mm, dd] = createdAt && createdAt.split('T')[0].split('-');
         return (
           <>
             {`${dd}-${mm}-${yy}`}
@@ -103,12 +119,21 @@ const PreviousJobsPage = () => {
       key: 'action',
       render: ({ id }) => (
         <Space>
-          <Link to={`/add-new-job/review/${id}`}>
+          <button
+            className="clear-btn-default"
+            type="submit"
+            onClick={() => reviewJob(id)}
+          >
             <i className="icon-view" />
-          </Link>
-          <Link to={`/add-new-job/vehicleInformation/${id}`}>
+          </button>
+          <button
+            className="clear-btn-default"
+            type="submit"
+            to={`/add-new-job/review/${id}`}
+            onClick={() => editJob(id)}
+          >
             <i className="icon-edit" />
-          </Link>
+          </button>
           <button className="clear-btn-default" type="submit" onClick={() => deleteJob(id)}>
             <i className="icon-remove" />
           </button>

@@ -10,7 +10,7 @@ export const CREATE_STATUS = {
   SUCCESS: 2,
 };
 
-export const UPDATE_STATUS = {
+export const EDIT_STATUS = {
   DEFAULT: 0,
   FAIL: 1,
   SUCCESS: 2,
@@ -18,6 +18,7 @@ export const UPDATE_STATUS = {
 
 export const FORM_TYPE = {
   ADD: 1,
-  UPDATE: 2,
-  LIST: 3,
+  EDIT: 2,
+  REMOVE: 3,
+  REVIEW: 4,
 };

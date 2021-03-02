@@ -1,5 +1,6 @@
 import immutable from 'immutable';
 import {
+  CLEAR_SERVICE_RECOMMENDATION_STATE,
   CREATE_SERVICE_RECOMMENDATION_REQUEST,
 } from './action';
 
@@ -24,6 +25,12 @@ const serviceRecommendationReducer = (state = init(), action) => {
       const { values } = action.payload;
       return state.set('serviceRecommendation', {
         ...values,
+      });
+    }
+
+    case CLEAR_SERVICE_RECOMMENDATION_STATE: {
+      return state.set('serviceRecommendation', {
+        ...initialState,
       });
     }
 

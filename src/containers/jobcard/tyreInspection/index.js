@@ -1,10 +1,12 @@
 import { Form } from 'antd';
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { FORM_TYPE } from '../../../config/const';
+import { selectJobcard } from '../state/selector';
 import TyreInspectionTemplate from './formTemplate/index';
 import { createTyreInspection } from './state/action';
+import { selectTyreInspection } from './state/selector';
 
 const DriverAndOwnerInfo = () => {
   const dispatch = useDispatch();
@@ -22,6 +24,24 @@ const DriverAndOwnerInfo = () => {
     formType: FORM_TYPE.ADD,
     onSubmit: onAdd,
   });
+
+  const {
+    formInformation,
+    tyreInspection,
+  } = useSelector(state => ({
+    formInformation: selectJobcard(state),
+    tyreInspection: selectTyreInspection(state),
+  }));
+
+  useEffect(() => {
+    if (formInformation.formType === FORM_TYPE.EDIT) {
+      formRef.current = {
+        formType: FORM_TYPE.EDIT,
+        onSubmit: onAdd,
+      };
+      form.setFieldsValue(tyreInspection);
+    }
+  }, [form, formInformation.formType, onAdd, tyreInspection]);
 
   return (
     <div className="vihicle-inspection">

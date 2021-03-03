@@ -1,9 +1,9 @@
 import immutable from 'immutable';
 import {
-  LOGIN_ERROR,
+  HANDLE_RELOAD_PAGE, LOGIN_ERROR,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  HANDLE_RELOAD_PAGE,
+  LOG_OUT,
 } from './action';
 
 export const initialState = {
@@ -60,6 +60,13 @@ const loggedInformationReducer = (state = init(), action) => {
           isFailLogged: undefined,
           effect: loggedInfo.effect + 1,
         }));
+    }
+
+    case LOG_OUT: {
+      localStorage.removeItem('isLoggedD2Tyres');
+      return state
+        .set('isLoading', false)
+        .set('loggedInformation', { ...initialState });
     }
 
     default:

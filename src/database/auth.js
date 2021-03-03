@@ -16,3 +16,11 @@ export const login = async (username, password) => remoteDB.logIn(username, pass
   console.log(err);
   throw err;
 });
+
+export const logOut = async () => remoteDB.logOut().then(res => {
+  console.log(res);
+  return res;
+}).catch(err => {
+  console.log(err);
+  throw err;
+});

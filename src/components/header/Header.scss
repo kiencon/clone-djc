@@ -5,6 +5,7 @@
 
   .wraper-header {
     display: flex;
+    justify-content: space-between;
     max-width: $max-width;
 
     .logo {
@@ -15,6 +16,13 @@
       img {
         width: 150px;
       }
+    }
+
+    .logOut {
+      cursor: pointer;
+      color: #fff;
+      padding-top: 30px;
+      font-weight: 600;
     }
   }
 }

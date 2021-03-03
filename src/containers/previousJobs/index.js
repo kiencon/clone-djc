@@ -1,7 +1,7 @@
-import { Space, Table } from 'antd';
+import { Button, Space, Table } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import {
   DELETE_STATUS,
 } from '../../config/const';
@@ -16,12 +16,18 @@ import {
 } from './state/selector';
 import { pushJobcardToState } from './utils';
 
-const Pagination = () => (
-  <div className="pagination">
-    <Link to="/" className="btn">Previous</Link>
-    <Link to="/" className="btn">Next</Link>
-  </div>
-);
+const Pagination = ({
+  total, current, next, previous,
+}) => {
+  console.log('total', total);
+  console.log('current', current);
+  return (
+    <div className="pagination">
+      <Button disabled={current === 1} type="submit" onClick={() => previous()}>Previous</Button>
+      <Button disabled={current === total - 1} type="submit" onClick={() => next()}>Next</Button>
+    </div>
+  );
+};
 
 const PreviousJobsPage = () => {
   const dispatch = useDispatch();
@@ -35,7 +41,10 @@ const PreviousJobsPage = () => {
     }),
   );
 
+  const docPerPage = 10;
+
   const [data, setData] = useState([]);
+  const [page, setPage] = useState(0);
 
   const getListJob = () => {
     apiDB.listJob()
@@ -142,6 +151,18 @@ const PreviousJobsPage = () => {
     },
   ];
 
+  const next = () => {
+    if (page + 1 < Math.ceil(data.length / docPerPage)) {
+      setPage(page + 1);
+    }
+  };
+
+  const previous = () => {
+    if (page - 1 > 0) {
+      setPage(page - 1);
+    }
+  };
+
   useEffect(() => {
     getListJob();
   }, []);
@@ -151,8 +172,8 @@ const PreviousJobsPage = () => {
         <h1>
           View Previous Jobs
         </h1>
-        <Table columns={columns} dataSource={data} />
-        <Pagination />
+        <Table columns={columns} dataSource={data.slice(page * docPerPage, (page + 1) * docPerPage)} />
+        <Pagination previous={previous} next={next} total={Math.ceil(data.length / docPerPage)} current={page} />
       </div>
     </>
   );

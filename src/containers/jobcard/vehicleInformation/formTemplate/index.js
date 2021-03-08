@@ -1,16 +1,32 @@
 /* eslint-disable no-unused-vars */
 import { SearchOutlined } from '@ant-design/icons';
 import {
-  Button, Form, Input, Select,
+  AutoComplete, Button, Form, Input, Select,
 } from 'antd';
-import React from 'react';
+import React, { useState } from 'react';
 
 const { Option } = Select;
+
+const mockVal = (str, repeat = 1) => ({
+  value: str.repeat(repeat),
+});
 
 const VehicleInformationFormTemplate = ({ form, onSubmit }) => {
   const onVehicleTypeChange = () => {
     // todo
     // console.log(value);
+  };
+
+  const [options, setOptions] = useState([]);
+
+  const onSelect = data => {
+    console.log('onSelect', data);
+  };
+
+  const onSearch = searchText => {
+    setOptions(
+      !searchText ? [] : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)],
+    );
   };
 
   return (
@@ -19,6 +35,18 @@ const VehicleInformationFormTemplate = ({ form, onSubmit }) => {
       form={form}
       onFinish={onSubmit}
     >
+      <Form.Item
+        name="autoComplete"
+      >
+        <AutoComplete
+          options={options}
+          // style={{ width: 200 }}
+          onSelect={onSelect}
+          onSearch={onSearch}
+          placeholder="Vehicle Registration Number"
+          suffix={<SearchOutlined style={{ color: 'rgba(0,0,0,.45)' }} />}
+        />
+      </Form.Item>
       <Form.Item
         name="vehicleRegistrationNumber"
         rules={[

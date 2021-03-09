@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 /* eslint-disable no-undef */
 import PouchDB from 'pouchdb';
 import mockData from './mockData';

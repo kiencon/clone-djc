@@ -45,7 +45,7 @@ const VehicleInformationFormTemplate = ({ form, onSubmit }) => {
       form={form}
       onFinish={onSubmit}
     >
-      <Form.Item
+      {/* <Form.Item
         name="autoComplete"
       >
         <AutoComplete
@@ -54,7 +54,7 @@ const VehicleInformationFormTemplate = ({ form, onSubmit }) => {
           onSearch={onSearch}
           placeholder="Vehicle Registration Number"
         />
-      </Form.Item>
+      </Form.Item> */}
       <Form.Item
         name="vehicleRegistrationNumber"
         rules={[

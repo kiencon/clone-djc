@@ -9,12 +9,21 @@ class Db {
     this.remoteURL = `https://1f8f1b10-c761-4916-b583-41bd83e6a4ed-bluemix:9f0a3c639cf982ec03bf58fcf054f47e437d3485e209de080d7842b0006029fa@1f8f1b10-c761-4916-b583-41bd83e6a4ed-bluemix.cloudantnosqldb.appdomain.cloud/${this.dbName}`;
   }
 
-  saveJob(doc) {
+  async saveJob(doc) {
+    const createdAt = new Date();
+    const isExistVehicle = await this.db.get(doc.vehicleInformation.vehicleRegistrationNumber);
+    if (!isExistVehicle) {
+      await this.db.post({
+        _id: `${doc.vehicleInformation.vehicleRegistrationNumber}`,
+        createdAt,
+        type: 'vehicle',
+      });
+    }
     return this.db.post({
       ...doc,
       type: 'jobsheet',
       _id: `${doc.driverAndOwnerInfo.id}`,
-      createdAt: new Date(),
+      createdAt,
     });
   }
 
@@ -73,7 +82,7 @@ class Db {
       views: {
         vehicle: {
           map: function (doc) {
-            if (doc.type === 'jobsheet') {
+            if (doc.type === 'vehicle') {
               // eslint-disable-next-line no-undef
               emit(doc.vehicleInformation.vehicleRegistrationNumber, null);
             }

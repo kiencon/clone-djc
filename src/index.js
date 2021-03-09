@@ -8,8 +8,7 @@ import store from './store';
 import './styles/index.scss';
 
 db.startSyncFirstTime()
-  .then(() => db.initViewVehicle())
-  .then(() => db.initViewByCompany());
+  .then(() => db.initViewVehicle());
 
 ReactDOM.render(
   <React.StrictMode>

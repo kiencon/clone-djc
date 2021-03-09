@@ -54,6 +54,8 @@ const PreviousJobsPage = () => {
     apiDB.listJob()
       .then(res => {
         const jobsheet = res.rows.filter(({ doc }) => doc.type === 'jobsheet');
+        const vehicles = res.rows.filter(({ doc }) => doc.type === 'vehicle');
+        console.log('vehicles', vehicles);
         const docs = jobsheet.map(({ doc, id }) => ({
           key: id,
           id,

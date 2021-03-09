@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import PouchDB from 'pouchdb';
 import mockData from './mockData';
 
@@ -51,6 +52,11 @@ class Db {
       live: keepAlive,
       retry: true,
       batches_limit: 10,
+      selector: {
+        type: {
+          $exists: true,
+        },
+      },
     });
   }
 
@@ -59,6 +65,48 @@ class Db {
       skip_setup: true,
       auto_compaction: true,
     });
+  }
+
+  initViewVehicle() {
+    const view = {
+      _id: '_design/vehicle',
+      views: {
+        vehicle: {
+          map: function (doc) {
+            if (doc.type === 'jobsheet') {
+              // eslint-disable-next-line no-undef
+              emit(doc.vehicleInformation.vehicleRegistrationNumber, null);
+            }
+          }.toString(),
+        },
+      },
+    };
+
+    // save it
+    this.db.put(view).then(() => {
+      console.log('init vehicle succsess');
+    }).catch(err => {
+      // some error (maybe a 409, because it already exists?)
+      console.log(err);
+    });
+  }
+
+  async searchVehicleNumber(startkey, limit = 20, include_docs = true) {
+    const endkey = `${startkey}\uffff`;
+    const res = await this.db.query('vehicle/vehicle',
+      {
+        startkey, endkey, limit, include_docs,
+      }).then(docs => {
+      const data = [];
+      for (let i = 0; i < docs.rows.length; i += 1) {
+        data.push(docs.rows[i].doc);
+      }
+      return docs;
+    })
+      .catch(err => {
+        console.log(err);
+      });
+    return res;
   }
 }
 const apiDB = new Db();

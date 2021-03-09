@@ -7,7 +7,9 @@ import db from './database';
 import store from './store';
 import './styles/index.scss';
 
-db.startSyncFirstTime();
+db.startSyncFirstTime()
+  .then(() => db.initViewVehicle())
+  .then(() => db.initViewByCompany());
 
 ReactDOM.render(
   <React.StrictMode>

@@ -23,7 +23,7 @@ const Pagination = ({
   console.log('current', current);
   return (
     <div className="pagination">
-      <Button disabled={current === 1} type="submit" onClick={() => previous()}>Previous</Button>
+      <Button disabled={current === 0} type="submit" onClick={() => previous()}>Previous</Button>
       <Button disabled={current === total - 1} type="submit" onClick={() => next()}>Next</Button>
     </div>
   );
@@ -46,10 +46,15 @@ const PreviousJobsPage = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
 
+  useEffect(() => {
+    apiDB.searchVehicleNumber('A').then(res => console.log('searchVehicleNumber', res));
+  }, []);
+
   const getListJob = () => {
     apiDB.listJob()
       .then(res => {
-        const docs = res.rows.map(({ doc, id }) => ({
+        const jobsheet = res.rows.filter(({ doc }) => doc.type === 'jobsheet');
+        const docs = jobsheet.map(({ doc, id }) => ({
           key: id,
           id,
           companyName: doc.driverAndOwnerInfo.companyName,
@@ -73,7 +78,6 @@ const PreviousJobsPage = () => {
 
   const editJob = id => {
     const doc = data.find(e => e.id === id);
-    console.log(doc);
     // eslint-disable-next-line no-underscore-dangle
     dispatch(editJobRequest({ values: { _id: doc._id, _rev: doc._rev } }));
     pushJobcardToState(dispatch, doc);
@@ -158,7 +162,7 @@ const PreviousJobsPage = () => {
   };
 
   const previous = () => {
-    if (page - 1 > 0) {
+    if (page - 1 >= 0) {
       setPage(page - 1);
     }
   };

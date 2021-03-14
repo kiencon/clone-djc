@@ -6,7 +6,6 @@ import { createVehicleInformation } from '../../jobcard/vehicleInformation/state
 import { createVehicleInspection } from '../../jobcard/vehicleInspection/state/action';
 
 export const pushJobcardToState = (dispatch, doc) => {
-  console.log(doc.driverAndOwnerInfo);
   dispatch(createVehicleInformation({ values: doc.vehicleInformation }));
   dispatch(createDriverAndOwnerInfo({ values: doc.driverAndOwnerInfo }));
   dispatch(createVehicleInspection({ values: doc.vehicleInspection }));

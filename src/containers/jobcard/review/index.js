@@ -64,7 +64,8 @@ const ReviewInfo = () => {
       dispatch(resetJobcardForm());
       removeJobcardFromStore(dispatch);
       history.push('/');
-    }).catch(() => {
+    }).catch(err => {
+      console.log(err);
       openNotification('Save job fail');
     });
   };

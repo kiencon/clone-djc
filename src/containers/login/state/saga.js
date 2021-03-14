@@ -8,11 +8,11 @@ import { loginAPI } from './api';
 
 export function* loginSaga({ payload }) {
   const { username, password } = payload.values;
-  const response = yield loginAPI(username, password);
-  if (response) {
+  try {
+    const response = yield loginAPI(username, password);
     yield put(loginSuccess(response));
-  } else {
-    yield put(loginError(response));
+  } catch (error) {
+    yield put(loginError(error));
   }
 }
 

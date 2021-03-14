@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-import { SearchOutlined } from '@ant-design/icons';
 import {
   AutoComplete, Button, Form, Input, Select,
 } from 'antd';
@@ -7,32 +5,22 @@ import React, { useState } from 'react';
 import apiDB from '../../../../database';
 
 const { Option } = Select;
-const mockVal = (str, repeat = 1) => ({
-  value: str.repeat(repeat),
-});
 
 const VehicleInformationFormTemplate = ({ form, onSubmit }) => {
-  const onVehicleTypeChange = () => {
-    // todo
-    // console.log(value);
-  };
-
   const [options, setOptions] = useState([]);
 
   const onSelect = data => {
-    console.log('onSelect', options);
+    const { doc } = options.find(opt => opt.key === data);
+    console.log('onSelect', doc);
+    form.setFieldsValue(doc);
   };
 
-  // const onSearch = searchText => apiDB.searchVehicleNumber(searchText)
-  //   .then(({ rows }) => {
-  //     console.log(rows);
-  //     return setOptions(!searchText ? [] : rows.map(e => e.key));
-  //   });
   const onSearch = async searchText => {
     const keys = await apiDB.searchVehicleNumber(searchText)
       .then(({ rows }) => rows.map(e => ({
         key: e.id,
         value: e.key,
+        doc: e.doc,
       })));
     setOptions(
       searchText ? keys : [],
@@ -45,16 +33,15 @@ const VehicleInformationFormTemplate = ({ form, onSubmit }) => {
       form={form}
       onFinish={onSubmit}
     >
-      {/* <Form.Item
-        name="autoComplete"
+      <Form.Item
+        name="_rev"
+        hidden
       >
-        <AutoComplete
-          options={options}
-          onSelect={onSelect}
-          onSearch={onSearch}
-          placeholder="Vehicle Registration Number"
+        <Input
+          placeholder="hidden"
         />
-      </Form.Item> */}
+      </Form.Item>
+
       <Form.Item
         name="vehicleRegistrationNumber"
         rules={[
@@ -64,9 +51,11 @@ const VehicleInformationFormTemplate = ({ form, onSubmit }) => {
           },
         ]}
       >
-        <Input
+        <AutoComplete
+          options={options}
+          onSelect={onSelect}
+          onSearch={onSearch}
           placeholder="Vehicle Registration Number"
-          suffix={<SearchOutlined style={{ color: 'rgba(0,0,0,.45)' }} />}
         />
       </Form.Item>
 

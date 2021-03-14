@@ -1,7 +1,8 @@
+/* eslint-disable camelcase */
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable func-names */
 /* eslint-disable no-undef */
 import PouchDB from 'pouchdb';
-import mockData from './mockData';
 
 class Db {
   constructor() {
@@ -10,22 +11,57 @@ class Db {
     this.remoteURL = `https://1f8f1b10-c761-4916-b583-41bd83e6a4ed-bluemix:9f0a3c639cf982ec03bf58fcf054f47e437d3485e209de080d7842b0006029fa@1f8f1b10-c761-4916-b583-41bd83e6a4ed-bluemix.cloudantnosqldb.appdomain.cloud/${this.dbName}`;
   }
 
-  async saveJob(doc) {
+  saveJob(doc) {
     const createdAt = new Date();
-    const isExistVehicle = await this.db.get(doc.vehicleInformation.vehicleRegistrationNumber);
-    if (!isExistVehicle) {
-      await this.db.post({
-        _id: `${doc.vehicleInformation.vehicleRegistrationNumber}`,
-        createdAt,
-        type: 'vehicle',
-      });
-    }
-    return this.db.post({
+    const cloneDoc = {
       ...doc,
       type: 'jobsheet',
-      _id: `${doc.driverAndOwnerInfo.id}`,
+      vehicleId: doc.vehicleInformation.vehicleRegistrationNumber,
+      companyId: doc.driverAndOwnerInfo.companyName,
       createdAt,
-    });
+      _id: `${doc.driverAndOwnerInfo.id}`,
+    };
+
+    const {
+      vehicleInformation,
+      driverAndOwnerInfo,
+    } = cloneDoc;
+
+    return Promise.all([
+      this.db.post(cloneDoc),
+      this.saveVehicle(vehicleInformation, createdAt),
+      this.saveCompany(driverAndOwnerInfo, createdAt),
+    ]);
+  }
+
+  async saveVehicle(doc, createdAt) {
+    const cloneDoc = {
+      ...doc,
+      createdAt,
+      _id: doc.vehicleRegistrationNumber,
+      type: 'vehicle',
+      updatedAt: new Date().toISOString(),
+    };
+    return this.saveDoc(cloneDoc);
+  }
+
+  saveDoc(doc) {
+    if (doc._rev) {
+      this.db.put(doc);
+    } else {
+      this.db.post(doc);
+    }
+  }
+
+  async saveCompany(doc, createdAt) {
+    const cloneDoc = {
+      ...doc,
+      createdAt,
+      _id: doc.companyName,
+      type: 'companyInfo',
+      updatedAt: new Date().toISOString(),
+    };
+    return this.saveDoc(cloneDoc);
   }
 
   listJob() {
@@ -48,13 +84,6 @@ class Db {
       createdAt: new Date(),
       ...doc,
     });
-  }
-
-  async mockData() {
-    for (let i = 0; i < mockData.length; i += 1) {
-      // eslint-disable-next-line no-await-in-loop
-      await this.saveJob(mockData[i]);
-    }
   }
 
   startSyncFirstTime(keepAlive) {
@@ -85,7 +114,7 @@ class Db {
           map: function (doc) {
             if (doc.type === 'vehicle') {
               // eslint-disable-next-line no-undef
-              emit(doc.vehicleInformation.vehicleRegistrationNumber, null);
+              emit(doc._id, null);
             }
           }.toString(),
         },
@@ -94,19 +123,56 @@ class Db {
 
     // save it
     this.db.put(view).then(() => {
-      console.log('init vehicle succsess');
+      console.log('init vehicle view succsess');
     }).catch(err => {
       // some error (maybe a 409, because it already exists?)
       console.log(err);
     });
   }
 
-  async searchVehicleNumber(startkey, limit = 20, include_docs = true) {
+  initViewCompanyInfo() {
+    const view = {
+      _id: '_design/companyInfo',
+      views: {
+        companyInfo: {
+          map: function (doc) {
+            if (doc.type === 'companyInfo') {
+              emit(doc._id, null);
+            }
+          }.toString(),
+        },
+      },
+    };
+
+    // save it
+    this.db.put(view).then(() => {
+      console.log('init companyInfo view succsess');
+    }).catch(err => {
+      // some error (maybe a 409, because it already exists?)
+      console.log(err);
+    });
+  }
+
+  async initView() {
+    await this.initViewVehicle();
+    await this.initViewCompanyInfo();
+  }
+
+  searchVehicleNumber(startkey, limit = 20, include_docs = true) {
+    return this.searchByView('vehicle/vehicle', startkey.toUpperCase(), limit, include_docs);
+  }
+
+  searchCompanyInfo(startkey, limit = 20, include_docs = true) {
+    return this.searchByView('companyInfo/companyInfo', startkey.toUpperCase(), limit, include_docs);
+  }
+
+  async searchByView(viewName, startkey, limit, include_docs) {
     const endkey = `${startkey}\uffff`;
-    const res = await this.db.query('vehicle/vehicle',
+    const res = await this.db.query(viewName,
       {
         startkey, endkey, limit, include_docs,
       }).then(docs => {
+      console.log('searchByView', docs);
       const data = [];
       for (let i = 0; i < docs.rows.length; i += 1) {
         data.push(docs.rows[i].doc);
@@ -119,5 +185,6 @@ class Db {
     return res;
   }
 }
+
 const apiDB = new Db();
 export default apiDB;

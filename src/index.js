@@ -8,7 +8,7 @@ import store from './store';
 import './styles/index.scss';
 
 db.startSyncFirstTime()
-  .then(() => db.initViewVehicle());
+  .then(() => db.initView());
 
 ReactDOM.render(
   <React.StrictMode>

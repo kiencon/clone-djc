@@ -46,16 +46,10 @@ const PreviousJobsPage = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
 
-  useEffect(() => {
-    apiDB.searchVehicleNumber('A').then(res => console.log('searchVehicleNumber', res));
-  }, []);
-
   const getListJob = () => {
     apiDB.listJob()
       .then(res => {
         const jobsheet = res.rows.filter(({ doc }) => doc.type === 'jobsheet');
-        const vehicles = res.rows.filter(({ doc }) => doc.type === 'vehicle');
-        console.log('vehicles', vehicles);
         const docs = jobsheet.map(({ doc, id }) => ({
           key: id,
           id,
@@ -66,9 +60,9 @@ const PreviousJobsPage = () => {
           // eslint-disable-next-line no-underscore-dangle
           _rev: doc._rev,
           ...doc,
-        }));
+        }))
+          .sort((first, second) => new Date(second.createdAt).getTime() - new Date(first.createdAt).getTime());
         setData(docs);
-        console.log(docs.length);
       })
       .catch(err => console.log(err));
   };

@@ -36,7 +36,7 @@ const Login = () => {
 
   useEffect(() => {
     if (loggedInformation.isLogged) {
-      openNotification('loggin successfully');
+      openNotification('login successfully');
       db.startSyncFirstTime(true);
       history.replace(from);
     }
